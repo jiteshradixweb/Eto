@@ -325,7 +325,7 @@ namespace Eto.WinForms.Forms
 			switch (id)
 			{
 				case Eto.Forms.Control.KeyDownEvent:
-					if (!ApplicationHandler.BubbleKeyEvents)
+					//if (!ApplicationHandler.BubbleKeyEvents)
 					{
 						Control.KeyDown += Control_KeyDown;
 						Control.KeyPress += Control_KeyPress;
