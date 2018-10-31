@@ -757,7 +757,7 @@ namespace Eto.Wpf.Forms
 
 		public PointF PointFromScreen(PointF point)
 		{
-			if (!ContainerControl.IsLoaded)
+			if (!ContainerControl.IsLoaded || !ContainerControl.IsVisible)
 				return point;
 
 			point = point.LogicalToScreen();

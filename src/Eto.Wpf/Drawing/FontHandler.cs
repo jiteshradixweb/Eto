@@ -377,12 +377,24 @@ namespace Eto.Wpf.Drawing
 
 		static swm.SolidColorBrush measureBrush;
 
+		//public SizeF MeasureString(string text)
+		//{
+		//	if (measureBrush == null)
+		//		measureBrush = new swm.SolidColorBrush(swm.Colors.White);
+		//	var formattedText = new swm.FormattedText(text, CultureInfo.CurrentUICulture, sw.FlowDirection.LeftToRight, WpfTypeface, PixelSize, measureBrush);
+		//	return new SizeF((float)formattedText.WidthIncludingTrailingWhitespace, (float)formattedText.Height);
+		//}
+
 		public SizeF MeasureString(string text)
 		{
-			if (measureBrush == null)
-				measureBrush = new swm.SolidColorBrush(swm.Colors.White);
-			var formattedText = new swm.FormattedText(text, CultureInfo.CurrentUICulture, sw.FlowDirection.LeftToRight, WpfTypeface, PixelSize, measureBrush);
-			return new SizeF((float)formattedText.WidthIncludingTrailingWhitespace, (float)formattedText.Height);
+			var textblock = new swc.TextBlock()
+			{
+				Text = text
+			};
+
+			textblock.Measure(new sw.Size(Double.PositiveInfinity, Double.PositiveInfinity));
+			var size = new SizeF((float)textblock.DesiredSize.Width, (float)textblock.DesiredSize.Height);
+			return size;
 		}
 	}
 }

@@ -18,7 +18,7 @@ namespace Eto.WinForms.Drawing
 
 		public FontHandler()
 		{
-			UseCompatibleTextRendering = true;
+			//UseCompatibleTextRendering = true;
         }
 
 		public FontHandler(sd.Font font)
