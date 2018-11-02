@@ -78,6 +78,7 @@
     <Compile Include="Forms\Cells\CustomCellHandler.cs" />
     <Compile Include="Forms\Controls\TextStepperHandler.cs" />
     <Compile Include="Forms\Controls\StepperHandler.cs" />
+    <Compile Include="Forms\Controls\VerticalScrollbarHandler.cs" />
     <Compile Include="Forms\DataObjectHandler.cs" />
     <Compile Include="Forms\NativeFormHandler.cs" />
     <Compile Include="Forms\TrayIndicatorHandler.cs" />
