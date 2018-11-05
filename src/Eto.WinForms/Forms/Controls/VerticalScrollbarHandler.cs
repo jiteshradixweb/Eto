@@ -1,3 +1,4 @@
+using Eto.Drawing;
 using Eto.Forms;
 using swf = System.Windows.Forms;
 
@@ -15,10 +16,10 @@ namespace Eto.WinForms.Forms.Controls
 		{
 			this.Control = new swf.VScrollBar();
 			this.Control.Visible = true;
-			//this.Control.Scroll += (sender, e) =>
-			//{
-				////Callback.OnScroll(Widget, new ScrollEventArgs(Point.Empty));
-			//};
+			this.Control.Scroll += (sender, e) =>
+			{
+				Callback.OnScroll(Widget, new ScrollBarEventArgs(e.NewValue));
+			};
 		}
 	}
 }

@@ -1,8 +1,30 @@
+using System;
 using Eto.Drawing;
-
+using System.ComponentModel;
 
 namespace Eto.Forms
 {
+	/// <summary>
+	/// Event arguments for <see cref="VerticalScrollbar.Scroll"/> events
+	/// </summary>
+	public class ScrollBarEventArgs : EventArgs
+	{
+		/// <summary>
+		/// Gets the New Value
+		/// </summary>
+		/// <value>The new scroll value.</value>
+		public int NewValue { get; private set; }
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Eto.Forms.ScrollEventArgs"/> class.
+		/// </summary>
+		/// <param name="Value">New Value.</param>
+		public ScrollBarEventArgs(int value)
+		{
+			this.NewValue = value;
+		}
+	}
+
 	/// <summary>
 	/// Vertical ScrollBar
 	/// </summary>
@@ -18,6 +40,33 @@ namespace Eto.Forms
 		{
 		}
 
+		static VerticalScrollbar()
+		{
+			EventLookup.Register<VerticalScrollbar>(c => c.OnScroll(null), Scrollable.ScrollEvent);
+		}
+		/// <summary>
+		/// Event identifier for handlers when attaching the <see cref="VerticalScrollbar.Scroll"/> event
+		/// </summary>
+		public const string ScrollEvent = "VerticalScrollbar.ScrollEvent";
+
+		/// <summary>
+		/// Event to handle when the <see cref="ScrollPosition"/> changes
+		/// </summary>
+		public event EventHandler<ScrollBarEventArgs> Scroll
+		{
+			add { Properties.AddHandlerEvent(ScrollEvent, value); }
+			remove { Properties.RemoveEvent(ScrollEvent, value); }
+		}
+
+		/// <summary>
+		/// Raises the <see cref="Scroll"/> event
+		/// </summary>
+		/// <param name="e">Scroll event arguments</param>
+		protected virtual void OnScroll(ScrollBarEventArgs e)
+		{
+			Properties.TriggerEvent(ScrollEvent, this, e);
+		}
+
 		/// <summary>
 		/// Name property for vertical scroll bar.
 		/// </summary>
@@ -31,6 +80,8 @@ namespace Eto.Forms
 			set { Handler.Name = value; }
 		}
 
+		#region Callback
+
 		/// <summary>
 		/// Handler.
 		/// </summary>
@@ -42,13 +93,37 @@ namespace Eto.Forms
 			string Name { get; set; }
 		}
 
+		static readonly object callback = new Callback();
+		/// <summary>
+		/// Gets an instance of an object used to perform callbacks to the widget from handler implementations
+		/// </summary>
+		/// <returns>The callback instance to use for this widget</returns>
+		protected override object GetCallback() { return callback; }
 
-		//public new interface ICallback : CommonControl.ICallback
-		//{
-		//	/// <summary>
-		//	/// Raises the scroll event.
-		//	/// </summary>
-		//	void OnScroll(CustomScrollbar widget, ScrollEventArgs e);
-		//}
+		public new interface ICallback : CommonControl.ICallback
+		{
+			/// <summary>
+			/// Raises the scroll event.
+			/// </summary>
+			void OnScroll(VerticalScrollbar widget, ScrollBarEventArgs e);
+		}
+
+		/// <summary>
+		/// Callback implementation for the <see cref="Scrollable"/>
+		/// </summary>
+		protected new class Callback : CommonControl.Callback, ICallback
+		{
+			/// <summary>
+			/// Raises the scroll event.
+			/// </summary>
+			public void OnScroll(VerticalScrollbar widget, ScrollBarEventArgs e)
+			{
+				using (widget.Platform.Context)
+					widget.OnScroll(e);
+			}
+		}
+
+		#endregion
+
 	}
 }
