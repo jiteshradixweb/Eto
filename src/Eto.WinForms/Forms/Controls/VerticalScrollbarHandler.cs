@@ -12,6 +12,24 @@ namespace Eto.WinForms.Forms.Controls
 			set { Control.Name = value; }
 		}
 
+		public int Maximum
+		{
+			get => Control.Maximum;
+			set => Control.Maximum = value;
+		}
+
+		public int Minimum
+		{
+			get => Control.Minimum;
+			set => Control.Minimum = value;
+		}
+
+		public int Value
+		{
+			get => Control.Value;
+			set => Control.Value = value;
+		}
+
 		public VerticalScrollbarHandler()
 		{
 			this.Control = new swf.VScrollBar();

@@ -80,6 +80,33 @@ namespace Eto.Forms
 			set { Handler.Name = value; }
 		}
 
+		/// <summary>
+		/// Maximum.
+		/// </summary>
+		public int Maximum
+		{
+			get { return Handler.Maximum; }
+			set { Handler.Maximum = value; }
+		}
+
+		/// <summary>
+		/// Minimum.
+		/// </summary>
+		public int Minimum
+		{
+			get { return Handler.Maximum; }
+			set { Handler.Minimum = value; }
+		}
+
+		/// <summary>
+		/// Value.
+		/// </summary>
+		public int Value
+		{
+			get { return Handler.Value; }
+			set { Handler.Value = value; }
+		}
+
 		#region Callback
 
 		/// <summary>
@@ -91,6 +118,24 @@ namespace Eto.Forms
 			/// Name.
 			/// </summary>
 			string Name { get; set; }
+
+			/// <summary>
+			/// Maximum.
+			/// </summary>
+			[DefaultValue(0)]
+			int Maximum { get; set; }
+
+			/// <summary>
+			/// Minimum.
+			/// </summary>
+			[DefaultValue(0)]
+			int Minimum { get; set; }
+
+			/// <summary>
+			/// Value.
+			/// </summary>
+			[DefaultValue(0)]
+			int Value { get; set; }
 		}
 
 		static readonly object callback = new Callback();
