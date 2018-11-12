@@ -4,7 +4,7 @@ using swf = System.Windows.Forms;
 
 namespace Eto.WinForms.Forms.Controls
 {
-	class VerticalScrollbarHandler : WindowsControl<swf.VScrollBar, VerticalScrollbar, VerticalScrollbar.ICallback>, VerticalScrollbar.IHandler
+	public class VerticalScrollbarHandler : WindowsControl<swf.VScrollBar, VerticalScrollbar, VerticalScrollbar.ICallback>, VerticalScrollbar.IHandler
 	{
 		public string Name
 		{

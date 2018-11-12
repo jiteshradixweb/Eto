@@ -72,7 +72,7 @@ namespace Eto.Wpf
 			p.Add<DrawableCell.IHandler>(() => new DrawableCellHandler());
 			p.Add<ProgressCell.IHandler>(() => new ProgressCellHandler());
 			p.Add<CustomCell.IHandler>(() => new CustomCellHandler());
-			
+
 			// Forms.Controls
 			p.Add<Button.IHandler>(() => new ButtonHandler());
 			p.Add<Calendar.IHandler>(() => new CalendarHandler());
@@ -116,7 +116,8 @@ namespace Eto.Wpf
 			p.Add<FilePicker.IHandler>(() => new ThemedFilePickerHandler());
 			p.Add<DocumentControl.IHandler>(() => new ThemedDocumentControlHandler());
 			p.Add<DocumentPage.IHandler>(() => new ThemedDocumentPageHandler());
-			
+			p.Add<VerticalScrollbar.IHandler>(() => new VerticalScrollbarHandler());
+
 			// Forms.Menu
 			p.Add<CheckMenuItem.IHandler>(() => new CheckMenuItemHandler());
 			p.Add<ContextMenu.IHandler>(() => new ContextMenuHandler());
@@ -124,19 +125,19 @@ namespace Eto.Wpf
 			p.Add<MenuBar.IHandler>(() => new MenuBarHandler());
 			p.Add<RadioMenuItem.IHandler>(() => new RadioMenuItemHandler());
 			p.Add<SeparatorMenuItem.IHandler>(() => new SeparatorMenuItemHandler());
-			
+
 			// Forms.Printing
 			p.Add<PrintDialog.IHandler>(() => new PrintDialogHandler());
 			p.Add<PrintDocument.IHandler>(() => new PrintDocumentHandler());
 			p.Add<PrintSettings.IHandler>(() => new PrintSettingsHandler());
-			
+
 			// Forms.ToolBar
 			p.Add<CheckToolItem.IHandler>(() => new CheckToolItemHandler());
 			p.Add<RadioToolItem.IHandler>(() => new RadioToolItemHandler());
 			p.Add<SeparatorToolItem.IHandler>(() => new SeparatorToolItemHandler());
 			p.Add<ButtonToolItem.IHandler>(() => new ButtonToolItemHandler());
 			p.Add<ToolBar.IHandler>(() => new ToolBarHandler());
-			
+
 			// Forms
 			p.Add<AboutDialog.IHandler>(() => new ThemedAboutDialogHandler());
 			p.Add<Application.IHandler>(() => new ApplicationHandler());
@@ -167,7 +168,7 @@ namespace Eto.Wpf
 
 			// IO
 			p.Add<SystemIcons.IHandler>(() => new SystemIconsHandler());
-			
+
 			// General
 			p.Add<EtoEnvironment.IHandler>(() => new EtoEnvironmentHandler());
 		}
