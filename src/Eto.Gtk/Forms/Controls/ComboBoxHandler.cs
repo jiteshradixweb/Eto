@@ -51,6 +51,11 @@ namespace Eto.GtkSharp.Forms.Controls
 				Handler.Callback.OnTextChanged(Handler.Widget, EventArgs.Empty);
 				Handler.UpdateSelectedIndexFromText();
 			}
+
+			public void HandleKeyDown(object sender, Gtk.KeyReleaseEventArgs args)
+			{
+				Handler.Callback.OnKeyDown(Handler.Widget, args.Event.ToEto());
+			}
 		}
 
 		void UpdateSelectedIndexFromText()
@@ -79,6 +84,9 @@ namespace Eto.GtkSharp.Forms.Controls
 			{
 				case ComboBox.TextChangedEvent:
 					entry.Changed += Connector.HandleTextChanged;
+					break;
+				case ComboBox.KeyDownEvent:
+					entry.KeyReleaseEvent += Connector.HandleKeyDown;
 					break;
 				default:
 					base.AttachEvent(id);
