@@ -1,4 +1,4 @@
-﻿using Eto.Forms;
+using Eto.Forms;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -152,6 +152,7 @@ namespace Eto.GtkSharp
 			keymap.Add(Gdk.Key.KP_7, Keys.Keypad7);
 			keymap.Add(Gdk.Key.KP_8, Keys.Keypad8);
 			keymap.Add(Gdk.Key.KP_9, Keys.Keypad9);
+			keymap.Add(Gdk.Key.KP_Enter, Keys.Enter);
 
 			if (EtoEnvironment.Platform.IsMac)
 			{
@@ -187,7 +188,7 @@ namespace Eto.GtkSharp
 			keymap.Add(Gdk.Key.z, Keys.Z);
 			return keymap;
 		}
-		
+
 		static Dictionary<Keys, Gdk.Key> GetInverseMap()
 		{
 			var inversekeymap = new Dictionary<Keys, Gdk.Key>();
