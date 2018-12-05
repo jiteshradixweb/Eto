@@ -142,6 +142,7 @@ namespace Eto.GtkSharp
 			p.Add<RichTextArea.IHandler>(() => new RichTextAreaHandler());
 			p.Add<Stepper.IHandler>(() => new ThemedStepperHandler());
 			p.Add<TextStepper.IHandler>(() => new TextStepperHandler());
+			p.Add<VerticalScrollbar.IHandler>(() => new VerticalScrollbarHandler());
 
 			// Forms.Menu
 			p.Add<CheckMenuItem.IHandler>(() => new CheckMenuItemHandler());
@@ -150,12 +151,12 @@ namespace Eto.GtkSharp
 			p.Add<MenuBar.IHandler>(() => new MenuBarHandler());
 			p.Add<RadioMenuItem.IHandler>(() => new RadioMenuItemHandler());
 			p.Add<SeparatorMenuItem.IHandler>(() => new SeparatorMenuItemHandler());
-			
+
 			// Forms.Printing
 			p.Add<PrintDialog.IHandler>(() => new PrintDialogHandler());
 			p.Add<PrintDocument.IHandler>(() => new PrintDocumentHandler());
 			p.Add<PrintSettings.IHandler>(() => new PrintSettingsHandler());
-			
+
 			// Forms.ToolBar
 			p.Add<CheckToolItem.IHandler>(() => new CheckToolItemHandler());
 			p.Add<RadioToolItem.IHandler>(() => new RadioToolItemHandler());
@@ -199,7 +200,7 @@ namespace Eto.GtkSharp
 			p.Add<EtoEnvironment.IHandler>(() => new EtoEnvironmentHandler());
 
 			#if GTK3
-				
+
 			p.Add<Spinner.IHandler>(() => new SpinnerHandler());
 			p.Add<OpenWithDialog.IHandler>(() => new OpenWithDialogHandler());
 			#else
