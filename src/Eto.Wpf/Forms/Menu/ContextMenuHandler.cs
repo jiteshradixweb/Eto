@@ -20,6 +20,7 @@ namespace Eto.Wpf.Forms.Menu
 		public ContextMenuHandler()
 		{
 			Control = new swc.ContextMenu();
+			Control.ContextMenuOpening += HandleOpening;
 		}
 
 		public swi.InputBindingCollection InputBindings
@@ -48,6 +49,18 @@ namespace Eto.Wpf.Forms.Menu
 					base.AttachEvent(id);
 					break;
 			}
+		}
+
+		void HandleOpening(object sender, EventArgs e)
+		{
+			foreach (var item in Widget.Items)
+			{
+				var callback = ((ICallbackSource)item).Callback as MenuItem.ICallback;
+				if (callback != null)
+					callback.OnValidate(item, e);
+			}
+
+			Callback.OnOpening(Widget, EventArgs.Empty);
 		}
 
 		void HandleIsOpenChanged(object sender, EventArgs e)
