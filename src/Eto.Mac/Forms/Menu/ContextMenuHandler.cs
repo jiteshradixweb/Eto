@@ -52,6 +52,12 @@ namespace Eto.Mac.Forms.Menu
 			if (h == null)
 				return;
 			h.Callback.OnOpening(h.Widget, EventArgs.Empty);
+			foreach(var item in h.Widget.Items)
+			{
+				var callback = ((ICallbackSource)item).Callback as MenuItem.ICallback;
+				if (callback != null)
+					callback.OnValidate(item, EventArgs.Empty);
+			}
 		}
 
 		public override void MenuDidClose(NSMenu menu)
