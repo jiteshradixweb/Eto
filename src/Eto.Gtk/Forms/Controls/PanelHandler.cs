@@ -15,6 +15,13 @@ namespace Eto.GtkSharp.Forms.Controls
 			box = new GtkShrinkableVBox();
 			box.Resizable = true;
 			Control.CanFocus = true;
+			Control.KeyPressEvent += (s, arg) =>
+			{
+				if (Connector != null)
+				{
+					Connector.HandleKeyPressEvent(Control, arg);
+				}
+			};
 			Control.Add(box);
 		}
 
