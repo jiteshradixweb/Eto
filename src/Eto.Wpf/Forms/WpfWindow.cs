@@ -103,6 +103,9 @@ namespace Eto.Wpf.Forms
 			};
 			// needed to handle Application.Terminating event
 			HandleEvent(Window.ClosingEvent);
+			//Stop Navigation by keyboard keys
+			swi.KeyboardNavigation.SetDirectionalNavigation(Control, swi.KeyboardNavigationMode.None);
+			swi.KeyboardNavigation.SetDirectionalNavigation(menuHolder, swi.KeyboardNavigationMode.None);
 		}
 
 		void SetupPerMonitorDpi()

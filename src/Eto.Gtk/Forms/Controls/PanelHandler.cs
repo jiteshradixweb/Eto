@@ -22,6 +22,20 @@ namespace Eto.GtkSharp.Forms.Controls
 					Connector.HandleKeyPressEvent(Control, arg);
 				}
 			};
+			Control.FocusInEvent += (s, arg) =>
+			{
+				if (Connector != null)
+				{
+					Connector.FocusInEvent(Control, arg);
+				}
+			};
+			Control.FocusOutEvent += (s, arg) =>
+			{
+				if (Connector != null)
+				{
+					Connector.FocusOutEvent(Control, arg);
+				}
+			};
 			Control.Add(box);
 		}
 

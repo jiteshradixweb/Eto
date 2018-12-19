@@ -629,6 +629,11 @@ namespace Eto.GtkSharp.Forms
 				if (handler == null)
 					return;
 				handler.Callback.OnGotFocus(handler.Widget, EventArgs.Empty);
+				handler.Widget.VisualControls.ToList().ForEach(ctrl =>
+				{
+					handler.Callback.OnGotFocus(ctrl, EventArgs.Empty);
+					ctrl.VisualControls.ToList().ForEach(ctrl1 => handler.Callback.OnGotFocus(ctrl1, EventArgs.Empty));
+				});
 			}
 
 			public virtual void FocusOutEvent(object o, Gtk.FocusOutEventArgs args)
@@ -637,6 +642,12 @@ namespace Eto.GtkSharp.Forms
 				var handler = Handler;
 				if (handler != null)
 					handler.Callback.OnLostFocus(Handler.Widget, EventArgs.Empty);
+
+				handler.Widget.VisualControls.ToList().ForEach(ctrl =>
+				{
+					handler.Callback.OnLostFocus(ctrl, EventArgs.Empty);
+					ctrl.VisualControls.ToList().ForEach(ctrl1 => handler.Callback.OnLostFocus(ctrl1, EventArgs.Empty));
+				});
 			}
 
 			public void HandleControlRealized(object sender, EventArgs e)
