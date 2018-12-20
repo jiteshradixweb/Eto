@@ -43,6 +43,7 @@ namespace Eto.WinForms.Forms
 		{
 			var ctl = child.GetContainerControl();
 			ctl.Location = new sd.Point(x, y);
+			ctl.BringToFront();
 		}
 
 		public void Remove(Control child)
