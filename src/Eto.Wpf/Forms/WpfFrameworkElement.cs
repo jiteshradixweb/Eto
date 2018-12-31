@@ -138,7 +138,7 @@ namespace Eto.Wpf.Forms
 		/// <summary>
 		/// This property, when set to true, will prevent the control from growing/shrinking based on user input.
 		/// Typically, this will be accompanied by overriding the <see cref="DefaultSize"/> as well.
-		/// 
+		///
 		/// For example, when the user types into a text box, it will grow to fit the content if it is auto sized.
 		/// This doesn't happen on any other platform, so we need to disable this behaviour on WPF.
 		/// </summary>
@@ -219,6 +219,7 @@ namespace Eto.Wpf.Forms
 						? double.NaN
 						: defaultSize.Width
 					: UserPreferredSize.Width;
+				containerWidth = Math.Max(containerWidth, ContainerControl.Width);
 				ContainerControl.Width = Math.Max(containerWidth, parentMinimumSize.Width);
 				ContainerControl.MinWidth = Math.Max(0, double.IsNaN(UserPreferredSize.Width) ? defaultSize.Width : UserPreferredSize.Width);
 			}
