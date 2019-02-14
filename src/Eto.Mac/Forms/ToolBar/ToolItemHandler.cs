@@ -40,6 +40,8 @@ namespace Eto.Mac.Forms.ToolBar
 
 		bool Selectable { get; }
 
+		bool Visible { get; }
+
 		void ControlAdded(ToolBarHandler toolbar);
 	}
 
@@ -168,20 +170,25 @@ namespace Eto.Mac.Forms.ToolBar
 
 		protected virtual MacToolBarItemStyle DefaultStyle { get { return MacToolBarItemStyle.StandardButton; } }
 
+		protected virtual bool IsButton => true;
+
 		protected override void Initialize()
 		{
 			this.Identifier = Guid.NewGuid().ToString();
-			Control.Target = new ToolBarItemHandlerTarget { Handler = this };
-			Control.Action = selAction;
-			Control.Autovalidates = false;
-			Control.Label = string.Empty;
+			if (IsButton)
+			{
+				Control.Target = new ToolBarItemHandlerTarget { Handler = this };
+				Control.Action = selAction;
+				Control.Autovalidates = false;
+				Control.Label = string.Empty;
 
-			menuItem = new NSMenuItem(string.Empty);
-			menuItem.Action = Control.Action;
-			menuItem.Target = Control.Target;
-			Control.MenuFormRepresentation = menuItem;
-			Control.Enabled = true;
-			this.ToolBarItemStyle = DefaultStyle;
+				menuItem = new NSMenuItem(string.Empty);
+				menuItem.Action = Control.Action;
+				menuItem.Target = Control.Target;
+				Control.MenuFormRepresentation = menuItem;
+				Control.Enabled = true;
+				this.ToolBarItemStyle = DefaultStyle;
+			}
 			base.Initialize();
 		}
 
@@ -195,8 +202,11 @@ namespace Eto.Mac.Forms.ToolBar
 
 		static readonly Selector selAction = new Selector("action");
 
+		ToolBarHandler toolbar;
+
 		public virtual void ControlAdded(ToolBarHandler toolbar)
 		{
+			this.toolbar = toolbar;
 		}
 
 		public virtual void InvokeButton()
@@ -254,6 +264,42 @@ namespace Eto.Mac.Forms.ToolBar
 		NSToolbarItem IToolBarBaseItemHandler.Control
 		{
 			get { return Control; }
+		}
+
+		static readonly object Visible_Key = new object();
+
+		public bool Visible
+		{
+			get
+			{
+				if (menuItem != null)
+					return !menuItem.Hidden;
+				return Widget.Properties.Get<bool?>(Visible_Key) ?? true;
+			}
+			set
+			{
+				if (menuItem != null)
+					menuItem.Hidden = !value;
+				if (toolbar != null)
+				{
+					toolbar.Control.ValidateVisibleItems();
+
+					var idx = Array.IndexOf(toolbar.Control.VisibleItems, Control);
+					if (value)
+					{
+						if (idx == -1)
+						{
+							idx = toolbar.GetIndex(Widget);
+							toolbar.Control.InsertItem(Identifier, idx);
+						}
+					}
+					else if (idx != -1)
+					{
+						toolbar.Control.RemoveItem(idx);
+					}
+				}
+				Widget.Properties.Set(Visible_Key, value);
+			}
 		}
 
 		public void CreateFromCommand(Command command)

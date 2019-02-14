@@ -759,6 +759,15 @@ namespace Eto.Mac.Forms
 		{
 			if (color != null)
 			{
+				if (ContainerControl is NSBox box)
+				{
+					// use NSBox to fill instead to have better dark mode support
+					// e.g. background color is tinted by system automatically.
+					box.FillColor = color.Value.ToNSUI();
+					box.Transparent = !(color.Value.A > 0);
+					return;
+				}
+
 				if (color.Value.A > 0 && !drawRectAdded)
 				{
 					AddMethod(MacView.selDrawRect, new Action<IntPtr, IntPtr, CGRect>(DrawBackgroundRect), EtoEnvironment.Is64BitProcess ? "v@:{CGRect=dddd}" : "v@:{CGRect=ffff}", ContainerControl);
@@ -855,8 +864,12 @@ namespace Eto.Mac.Forms
 			{
 				if (Cursor != value)
 				{
+					bool needsMethod = !Widget.Properties.ContainsKey(MacView.Cursor_Key);
 					Widget.Properties[MacView.Cursor_Key] = value;
+					if (needsMethod)
 					AddMethod(MacView.selResetCursorRects, new Action<IntPtr, IntPtr>(TriggerResetCursorRects), "v@:");
+
+					EventControl.Window?.InvalidateCursorRectsForView(EventControl);
 				}
 			}
 		}
