@@ -66,7 +66,7 @@ namespace Eto.Wpf
 		public static IEnumerable<T> FindVisualChildren<T>(this sw.DependencyObject parent, string childName = null)
 			 where T : sw.DependencyObject
 		{
-			// Confirm parent and childName are valid. 
+			// Confirm parent and childName are valid.
 			if (parent == null) yield break;
 
 			int childrenCount = swm.VisualTreeHelper.GetChildrenCount(parent);
@@ -317,9 +317,9 @@ namespace Eto.Wpf
 		{
 			bitmap.Render(visual);
 			// fix memory leak with RenderTargetBitmap.  See http://stackoverflow.com/questions/14786490/wpf-memory-leak-using-rendertargetbitmap
-			// Reproducible with the 
+			// Reproducible with the
 			// GC.Collect alone seems to fix the issue.  Adding GC.WaitForPendingFinalizers may impact performance.
-			GC.Collect();
+			//GC.Collect();
 		}
 	}
 }
