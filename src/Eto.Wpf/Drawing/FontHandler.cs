@@ -14,6 +14,7 @@ namespace Eto.Wpf.Drawing
 		FontTypeface typeface;
 		FontDecoration decoration;
 		sd.Font sdfont;
+		double FontSize;
 
 		public static bool ShowSimulatedFonts = false;
 
@@ -23,7 +24,7 @@ namespace Eto.Wpf.Drawing
 			control.FontStyle = WpfFontStyle;
 			control.FontStretch = WpfFontStretch;
 			control.FontWeight = WpfFontWeight;
-			control.FontSize = PixelSize;
+			FontSize = control.FontSize = PixelSize;
 			if (setDecorations != null && WpfTextDecorationsFrozen != null)
 			{
 				setDecorations(WpfTextDecorationsFrozen);
@@ -36,7 +37,7 @@ namespace Eto.Wpf.Drawing
 			control.FontStyle = WpfFontStyle;
 			control.FontStretch = WpfFontStretch;
 			control.FontWeight = WpfFontWeight;
-			control.FontSize = PixelSize;
+			FontSize = control.FontSize = PixelSize;
 			if (setDecorations != null && WpfTextDecorationsFrozen != null)
 			{
 				setDecorations(WpfTextDecorationsFrozen);
@@ -49,7 +50,7 @@ namespace Eto.Wpf.Drawing
 			control.FontStyle = WpfFontStyle;
 			control.FontStretch = WpfFontStretch;
 			control.FontWeight = WpfFontWeight;
-			control.FontSize = PixelSize;
+			FontSize = control.FontSize = PixelSize;
 			if (setDecorations != null && WpfTextDecorationsFrozen != null)
 			{
 				setDecorations(WpfTextDecorationsFrozen);
@@ -181,7 +182,7 @@ namespace Eto.Wpf.Drawing
 		public FontHandler(swm.FontFamily family, double size, sw.FontStyle style, sw.FontWeight weight, sw.FontStretch stretch)
 		{
 			Family = new FontFamily(new FontFamilyHandler(family));
-			Size = size;
+			FontSize = Size = size;
 			WpfFontStyle = style;
 			WpfFontStretch = stretch;
 			WpfFontWeight = weight;
@@ -190,7 +191,7 @@ namespace Eto.Wpf.Drawing
 		public void Create(FontFamily family, float size, FontStyle style, FontDecoration decoration)
 		{
 			Family = family;
-			Size = size;
+			FontSize = Size = size;
 			SetStyle(style);
 			SetDecorations(decoration);
 		}
@@ -199,7 +200,7 @@ namespace Eto.Wpf.Drawing
 		{
 			this.typeface = typeface;
 			Family = typeface.Family;
-			Size = size;
+			FontSize= Size = size;
 			WpfFontWeight = WpfTypeface.Weight;
 			WpfFontStretch = WpfTypeface.Stretch;
 			WpfFontStyle = WpfTypeface.Style;
@@ -378,6 +379,19 @@ namespace Eto.Wpf.Drawing
 
 		static swm.SolidColorBrush measureBrush;
 
+		private double? spaceHeight;
+		public SizeF MeasureString(string text)
+		{
+			if (measureBrush == null)
+				measureBrush = new swm.SolidColorBrush(swm.Colors.White);
+			if (spaceHeight == null)
+				spaceHeight = new swm.FormattedText(" ", CultureInfo.CurrentUICulture, sw.FlowDirection.LeftToRight, WpfTypeface, PixelSize, measureBrush).Height;
+			var formattedText = new swm.FormattedText(text, CultureInfo.CurrentUICulture, sw.FlowDirection.LeftToRight, WpfTypeface, PixelSize, measureBrush);
+			var height = formattedText.Height;
+			if (text.Length == 0 || text.EndsWith("\n")) height += spaceHeight.Value;
+			return new SizeF((float)formattedText.WidthIncludingTrailingWhitespace, (float)height);
+		}
+
 		//public SizeF MeasureString(string text)
 		//{
 		//	if (measureBrush == null)
@@ -386,16 +400,16 @@ namespace Eto.Wpf.Drawing
 		//	return new SizeF((float)formattedText.WidthIncludingTrailingWhitespace, (float)formattedText.Height);
 		//}
 
-		public SizeF MeasureString(string text)
-		{
-			var textblock = new swc.TextBlock()
-			{
-				Text = text
-			};
+		//public SizeF MeasureString(string text)
+		//{
+		//	var textblock = new swc.TextBlock()
+		//	{
+		//		Text = text
+		//	};
 
-			textblock.Measure(new sw.Size(Double.PositiveInfinity, Double.PositiveInfinity));
-			var size = new SizeF((float)textblock.DesiredSize.Width, (float)textblock.DesiredSize.Height);
-			return size;
-		}
+		//	textblock.Measure(new sw.Size(Double.PositiveInfinity, Double.PositiveInfinity));
+		//	var size = new SizeF((float)textblock.DesiredSize.Width, (float)textblock.DesiredSize.Height);
+		//	return size;
+		//}
 	}
 }
