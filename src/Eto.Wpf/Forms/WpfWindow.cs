@@ -469,6 +469,23 @@ namespace Eto.Wpf.Forms
 			}
 		}
 
+		public override bool Visible
+		{
+			get => base.Visible;
+			set
+			{
+				if(value == false)
+				{
+					Win32.ShowWindow(WindowHandle, Win32.SW.HIDE);
+				}
+				else
+				{
+					Win32.ShowWindow(WindowHandle, Win32.SW.SHOW);
+				}
+				base.Visible = value;
+			}
+		}
+
 		public override Size Size
 		{
 			get
