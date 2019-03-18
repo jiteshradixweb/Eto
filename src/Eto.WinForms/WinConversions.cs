@@ -513,6 +513,32 @@ namespace Eto.WinForms
 			}
 		}
 
+		public static WindowStartPosition ToEto(this swf.FormStartPosition startPosition)
+		{
+			switch (startPosition)
+			{
+				case swf.FormStartPosition.CenterScreen:
+					return WindowStartPosition.CenterScreen;
+				case swf.FormStartPosition.CenterParent:
+					return WindowStartPosition.CenterParent;
+				default:
+					return WindowStartPosition.None;
+			}
+		}
+
+		public static swf.FormStartPosition ToSWF(this WindowStartPosition startPosition)
+		{
+			switch (startPosition)
+			{
+				case WindowStartPosition.CenterScreen:
+					return swf.FormStartPosition.CenterScreen;
+				case WindowStartPosition.CenterParent:
+					return swf.FormStartPosition.CenterParent;
+				default:
+					return swf.FormStartPosition.Manual;
+			}
+		}
+
 		public static swf.FormBorderStyle ToSWF(this WindowStyle style, bool resizable, swf.FormBorderStyle defaultStyle)
 		{
 			switch (style)

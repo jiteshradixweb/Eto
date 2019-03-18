@@ -451,6 +451,12 @@ namespace Eto.WinForms.Forms
 			set { Control.FormBorderStyle = value.ToSWF(resizable, DefaultWindowStyle); }
 		}
 
+		public WindowStartPosition WindowStartPosition
+		{
+			get { return Control.StartPosition.ToEto(); }
+			set { Control.StartPosition = value.ToSWF(); }
+		}
+
 		public virtual void BringToFront()
 		{
 			if (Control.WindowState == swf.FormWindowState.Minimized)

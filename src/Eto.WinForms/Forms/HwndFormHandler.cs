@@ -310,6 +310,18 @@ namespace Eto.WinForms.Forms
 			}
 		}
 
+		public WindowStartPosition WindowStartPosition
+		{
+			get
+			{
+				throw new NotImplementedException();
+			}
+			set
+			{
+				throw new NotImplementedException();
+			}
+		}
+
 		public void BringToFront()
 		{
 			throw new NotImplementedException();

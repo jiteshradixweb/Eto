@@ -687,6 +687,12 @@ namespace Eto.Wpf.Forms
 			set { Control.WindowStyle = value.ToWpf(); }
 		}
 
+		public WindowStartPosition WindowStartPosition
+		{
+			get { return Control.WindowStartupLocation.ToEto(); }
+			set { Control.WindowStartupLocation = value.ToWpf(); }
+		}
+
 		public void BringToFront()
 		{
 			if (Control.WindowState == sw.WindowState.Minimized)

@@ -42,7 +42,7 @@ namespace Eto.Wpf.Forms
 
 		public void Show()
 		{
-			Control.WindowStartupLocation = sw.WindowStartupLocation.Manual;
+			//Control.WindowStartupLocation = sw.WindowStartupLocation.Manual;
 			if (ApplicationHandler.Instance.IsStarted)
 				Control.Show();
 			else

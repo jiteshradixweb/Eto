@@ -184,7 +184,7 @@ namespace Eto.GtkSharp.Forms
 		{
 			get { return topmost; }
 			set
-			{ 
+			{
 				if (topmost != value)
 				{
 					topmost = value;
@@ -197,7 +197,7 @@ namespace Eto.GtkSharp.Forms
 		{
 			get { return style; }
 			set
-			{ 
+			{
 				if (style != value)
 				{
 					style = value;
@@ -215,6 +215,12 @@ namespace Eto.GtkSharp.Forms
 					}
 				}
 			}
+		}
+
+		public WindowStartPosition WindowStartPosition
+		{
+			get => Control.WindowPosition.ToEto();
+			set => Control.WindowPosition = value.ToGtk();
 		}
 
 		public override Size Size
@@ -274,7 +280,7 @@ namespace Eto.GtkSharp.Forms
 		protected override void Initialize()
 		{
 			base.Initialize();
-			
+
 			HandleEvent(Window.WindowStateChangedEvent); // to set restore bounds properly
 			HandleEvent(Window.ClosingEvent); // to chain application termination events
 			HandleEvent(Eto.Forms.Control.SizeChangedEvent); // for RestoreBounds
@@ -567,7 +573,7 @@ namespace Eto.GtkSharp.Forms
 			{
 				var gdkWindow = Control.GetWindow();
 				if (gdkWindow == null)
-					return state;	
+					return state;
 
 				if (gdkWindow.State.HasFlag(Gdk.WindowState.Iconified))
 					return WindowState.Minimized;
@@ -582,7 +588,7 @@ namespace Eto.GtkSharp.Forms
 				if (WindowState != value)
 				{
 					state = value;
-					var gdkWindow = Control.GetWindow();				
+					var gdkWindow = Control.GetWindow();
 					switch (value)
 					{
 						case WindowState.Maximized:

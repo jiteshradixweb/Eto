@@ -522,6 +522,33 @@ namespace Eto.Wpf
 			}
 		}
 
+		public static WindowStartPosition ToEto(this sw.WindowStartupLocation startupLocation)
+		{
+			switch (startupLocation)
+			{
+				case sw.WindowStartupLocation.CenterScreen:
+					return WindowStartPosition.CenterScreen;
+				case sw.WindowStartupLocation.CenterOwner:
+					return WindowStartPosition.CenterParent;
+				default:
+					return WindowStartPosition.None;
+			}
+		}
+
+		public static sw.WindowStartupLocation ToWpf(this WindowStartPosition startPosition)
+		{
+			switch (startPosition)
+			{
+				case WindowStartPosition.CenterParent:
+					return sw.WindowStartupLocation.CenterOwner;
+				case WindowStartPosition.CenterScreen:
+					return sw.WindowStartupLocation.CenterScreen;
+					//return sw.WindowStartupLocation.CenterOwner;
+				default:
+					return sw.WindowStartupLocation.Manual;
+			}
+		}
+
 		public static sw.WindowStyle ToWpf(this WindowStyle style)
 		{
 			switch (style)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -88,6 +88,33 @@ namespace Eto.GtkSharp
 					return Gdk.InterpType.Bilinear;
 				default:
 					throw new NotSupportedException();
+			}
+		}
+
+		public static Gtk.WindowPosition ToGtk(this WindowStartPosition windowStartPosition)
+		{
+			switch (windowStartPosition)
+			{
+				case WindowStartPosition.CenterParent:
+					return Gtk.WindowPosition.CenterOnParent;
+				case WindowStartPosition.CenterScreen:
+					return Gtk.WindowPosition.Center;
+				default:
+					return Gtk.WindowPosition.None;
+			}
+		}
+
+		public static WindowStartPosition ToEto(this Gtk.WindowPosition windowPosition)
+		{
+			switch (windowPosition)
+			{
+				case Gtk.WindowPosition.Center:
+				case Gtk.WindowPosition.CenterAlways:
+					return WindowStartPosition.CenterScreen;
+				case Gtk.WindowPosition.CenterOnParent:
+					return WindowStartPosition.CenterParent;
+				default:
+					return WindowStartPosition.None;
 			}
 		}
 

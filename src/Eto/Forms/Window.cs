@@ -39,6 +39,25 @@ namespace Eto.Forms
 	}
 
 	/// <summary>
+	/// Start Position of a <see cref="Window"/>
+	/// </summary>
+	public enum WindowStartPosition
+	{
+		/// <summary>
+		/// Default, Center to Parent
+		/// </summary>
+		CenterParent,
+		/// <summary>
+		/// Default, Center to Screen
+		/// </summary>
+		CenterScreen,
+		/// <summary>
+		/// None
+		/// </summary>
+		None
+	}
+
+	/// <summary>
 	/// Base window
 	/// </summary>
 	public abstract class Window : Panel
@@ -264,7 +283,7 @@ namespace Eto.Forms
 		{
 			get { return Handler.ToolBar; }
 			set
-			{ 
+			{
 				var toolbar = Handler.ToolBar;
 				if (toolbar != null)
 				{
@@ -311,7 +330,7 @@ namespace Eto.Forms
 		/// <remarks>
 		/// This sets the parent window that has ownership over this window.
 		/// For a <see cref="Dialog"/>, this will be the window that will be disabled while the modal dialog is shown.
-		/// With a  <see cref="Form"/>, the specified owner will always be below the current window when shown, and will 
+		/// With a  <see cref="Form"/>, the specified owner will always be below the current window when shown, and will
 		/// still be responsive to user input.  Typically, but not always, the window will move along with the owner.
 		/// </remarks>
 		/// <value>The owner of this window.</value>
@@ -372,7 +391,7 @@ namespace Eto.Forms
 		/// <remarks>
 		/// The icon should have many variations, such as 16x16, 24x24, 32x32, 48x48, 64x64, etc. This ensures that
 		/// the many places it is used (title bar, task bar, switch window, etc) all have optimized icon sizes.
-		/// 
+		///
 		/// For OS X, the application icon is specified in the .app bundle, not by this value.
 		/// </remarks>
 		/// <value>The icon for this window.</value>
@@ -422,8 +441,8 @@ namespace Eto.Forms
 		/// Gets or sets a value indicating whether this <see cref="Eto.Forms.Window"/> will show in the taskbar.
 		/// </summary>
 		/// <remarks>
-		/// Some platforms, e.g. macOS do not show a separate icon for each running window.  You may also have to add 
-		/// the LSUIElement key to your app's Info.plist to make your app hidden in the dock.  
+		/// Some platforms, e.g. macOS do not show a separate icon for each running window.  You may also have to add
+		/// the LSUIElement key to your app's Info.plist to make your app hidden in the dock.
 		/// See https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/LaunchServicesKeys.html#//apple_ref/doc/uid/TP40009250-108256-TPXREF136
 		/// </remarks>
 		/// <value><c>true</c> if the window will show in taskbar; otherwise, <c>false</c>.</value>
@@ -495,6 +514,17 @@ namespace Eto.Forms
 			set { Handler.WindowStyle = value; }
 		}
 
+
+		/// <summary>
+		/// Gets or sets the style of this window.
+		/// </summary>
+		/// <value>The window style.</value>
+		public WindowStartPosition WindowStartPosition
+		{
+			get { return Handler.WindowStartPosition; }
+			set { Handler.WindowStartPosition = value; }
+		}
+
 		/// <summary>
 		/// Brings the window in front of all other windows in the z-order.
 		/// </summary>
@@ -515,7 +545,7 @@ namespace Eto.Forms
 		/// Raises the <see cref="BindableWidget.DataContextChanged"/> event
 		/// </summary>
 		/// <remarks>
-		/// Implementors may override this to fire this event on child widgets in a heirarchy. 
+		/// Implementors may override this to fire this event on child widgets in a heirarchy.
 		/// This allows a control to be bound to its own <see cref="BindableWidget.DataContext"/>, which would be set
 		/// on one of the parent control(s).
 		/// </remarks>
@@ -531,13 +561,13 @@ namespace Eto.Forms
 		/// Gets the number of pixels per logical pixel when on a high DPI display.
 		/// </summary>
 		/// <remarks>
-		/// This indicates the number of pixels per logical pixel.  
+		/// This indicates the number of pixels per logical pixel.
 		/// All units in Eto.Forms such as control size, drawing operations, etc are in logical pixels.
-		/// When not in high DPI, this will be 1.0; 
+		/// When not in high DPI, this will be 1.0;
 		/// Retina displays in OS X will return 2; and
 		/// in windows this matches the scale set in the monitor settings.
-		/// 
-		/// Use the <see cref="LogicalPixelSizeChanged"/> to detect when the window is moved to 
+		///
+		/// Use the <see cref="LogicalPixelSizeChanged"/> to detect when the window is moved to
 		/// a display with a different DPI.
 		/// </remarks>
 		public float LogicalPixelSize
@@ -700,7 +730,7 @@ namespace Eto.Forms
 			/// <remarks>
 			/// The icon should have many variations, such as 16x16, 24x24, 32x32, 48x48, 64x64, etc. This ensures that
 			/// the many places it is used (title bar, task bar, switch window, etc) all have optimized icon sizes.
-			/// 
+			///
 			/// For OS X, the application icon is specified in the .app bundle, not by this value.
 			/// </remarks>
 			/// <value>The icon for this window.</value>
@@ -771,6 +801,12 @@ namespace Eto.Forms
 			WindowStyle WindowStyle { get; set; }
 
 			/// <summary>
+			/// Gets or sets the start position of this window.
+			/// </summary>
+			/// <value>The window start position.</value>
+			WindowStartPosition WindowStartPosition { get; set; }
+
+			/// <summary>
 			/// Brings the window in front of all other windows in the z-order.
 			/// </summary>
 			void BringToFront();
@@ -790,13 +826,13 @@ namespace Eto.Forms
 			/// Gets the number of pixels per logical pixel when on a high DPI display.
 			/// </summary>
 			/// <remarks>
-			/// This indicates the number of pixels per logical pixel.  
+			/// This indicates the number of pixels per logical pixel.
 			/// All units in Eto.Forms such as control size, drawing operations, etc are in logical pixels.
-			/// When not in high DPI, this will be 1.0; 
+			/// When not in high DPI, this will be 1.0;
 			/// Retina displays in OS X will return 2; and
 			/// in windows this matches the scale set in the monitor settings.
-			/// 
-			/// Use the <see cref="LogicalPixelSizeChanged"/> to detect when the window is moved to 
+			///
+			/// Use the <see cref="LogicalPixelSizeChanged"/> to detect when the window is moved to
 			/// a display with a different DPI.
 			/// </remarks>
 			float LogicalPixelSize { get; }

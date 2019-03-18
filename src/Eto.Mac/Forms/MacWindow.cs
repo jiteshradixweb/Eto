@@ -712,7 +712,7 @@ namespace Eto.Mac.Forms
 		{
 			get { return Control.ContentView.Frame.Size.ToEtoSize(); }
 			set
-			{ 
+			{
 				var oldFrame = Control.Frame;
 				var oldSize = Control.ContentView.Frame;
 				Control.SetFrameOrigin(new CGPoint(oldFrame.X, (nfloat)Math.Max(0, oldFrame.Y - (value.Height - oldSize.Height))));
@@ -825,7 +825,7 @@ namespace Eto.Mac.Forms
 				}
 				switch (value)
 				{
-					case WindowState.Maximized: 
+					case WindowState.Maximized:
 						if (Control.IsMiniaturized)
 							Control.Deminiaturize(Control);
 						if (!Control.IsZoomed)
@@ -835,7 +835,7 @@ namespace Eto.Mac.Forms
 						if (!Control.IsMiniaturized)
 							Control.Miniaturize(Control);
 						break;
-					case WindowState.Normal: 
+					case WindowState.Normal:
 						if (Control.IsZoomed)
 							Control.Zoom(Control);
 						if (Control.IsMiniaturized)
@@ -857,7 +857,7 @@ namespace Eto.Mac.Forms
 			set
 			{
 				Control.IsOpaque = Math.Abs(value - 1.0) < 0.01f;
-				Control.AlphaValue = (float)value; 
+				Control.AlphaValue = (float)value;
 			}
 		}
 
@@ -927,7 +927,7 @@ namespace Eto.Mac.Forms
 				contentSize.Width = (nfloat)Math.Max(contentSize.Width, MinimumSize.Width);
 				contentSize.Height = (nfloat)Math.Max(contentSize.Height, MinimumSize.Height);
 			}
-			
+
 			if (Widget.Loaded)
 			{
 				var diffy = ClientSize.Height - (int)contentSize.Height;
@@ -997,6 +997,21 @@ namespace Eto.Mac.Forms
 				{
 					Control.StyleMask = value.ToNS(Control.StyleMask);
 				}
+			}
+		}
+
+		private WindowStartPosition startPosition;
+		public WindowStartPosition WindowStartPosition
+		{
+			get { return startPosition; }
+			set
+			{
+				startPosition = value;
+				if(startPosition == WindowStartPosition.CenterScreen)
+				{
+					Control.Center();
+				}
+				//TODO: Need to check for other properties
 			}
 		}
 
