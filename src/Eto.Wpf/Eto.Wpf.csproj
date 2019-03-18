@@ -94,6 +94,7 @@
     <Compile Include="Forms\Controls\ExpanderHandler.cs" />
     <Compile Include="Forms\Cells\CustomCellHandler.cs" />
     <Compile Include="Forms\Controls\VerticalScrollbarHandler.cs" />
+    <Compile Include="Forms\Controls\ToggleButtonHandler.cs" />
     <Compile Include="Forms\NativeFormHandler.cs" />
     <Compile Include="LogicalScreenHelper.cs" />
     <Compile Include="PropertyChangeNotifier.cs" />
