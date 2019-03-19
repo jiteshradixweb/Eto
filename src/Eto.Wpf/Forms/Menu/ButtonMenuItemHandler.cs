@@ -10,6 +10,7 @@ namespace Eto.Wpf.Forms.Menu
 		public ButtonMenuItemHandler ()
 		{
 			Control = new swc.MenuItem();
+			Control.FlowDirection = System.Windows.FlowDirection.LeftToRight;
 		}
 	}
 }
