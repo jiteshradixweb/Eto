@@ -779,7 +779,7 @@ namespace Eto.Wpf.Forms
 
 		public PointF PointToScreen(PointF point)
 		{
-			if (!ContainerControl.IsLoaded)
+			if (!ContainerControl.IsLoaded || !ContainerControl.IsVisible)
 				return point;
 			return ContainerControl.PointToScreen(point.ToWpf()).ToEtoPoint().ScreenToLogical();
 		}
