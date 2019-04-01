@@ -243,11 +243,6 @@ namespace Eto.Wpf.Forms
 				ContainerControl.Height = Math.Max(containerHeight, parentMinimumSize.Height);
 				ContainerControl.MinHeight = Math.Max(0, double.IsNaN(UserPreferredSize.Height) ? defaultSize.Height : UserPreferredSize.Height);
 			}
-
-			if (ContainerControl is EtoBorder)
-			{
-				ContainerControl.SetSize(UserPreferredSize);
-			}
 		}
 
 		public virtual sw.Size GetPreferredSize(sw.Size constraint)
