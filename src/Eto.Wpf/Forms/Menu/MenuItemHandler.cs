@@ -134,6 +134,12 @@ namespace Eto.Wpf.Forms.Menu
 
 		void HandleContextMenuOpening(object sender, sw.RoutedEventArgs e)
 		{
+			var parenthandler = this as MenuItemHandler<TControl, TWidget, TCallback>;
+			if (parenthandler != null)
+			{
+				parenthandler.Callback.OnValidate(parenthandler.Widget, EventArgs.Empty);
+			}
+
 			var submenu = Widget as ISubmenu;
 			if (submenu != null)
 			{
