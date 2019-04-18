@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Eto.Drawing;
 using Eto.Forms;
@@ -123,7 +123,7 @@ namespace Eto.Wpf.Forms.Controls
 		public bool ReadOnly
 		{
 			get { return Control.IsReadOnly; }
-			set { Control.IsReadOnly = value; }
+			set { Control.IsEditable = !value; Control.IsReadOnly = value; }
 		}
 
 		public bool AutoComplete

@@ -26,7 +26,9 @@ namespace Eto.Test.Sections.Controls
 
 		Control Default()
 		{
-			var control = new DropDown();
+			//var control = new DropDown();
+			var control = new ComboBox();
+			control.ReadOnly = true;
 			LogEvents(control);
 
 			var layout = new DynamicLayout { DefaultSpacing = new Size(5, 5) };
