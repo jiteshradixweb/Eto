@@ -123,7 +123,7 @@ namespace Eto.Wpf.Forms.Controls
 		public bool ReadOnly
 		{
 			get { return Control.IsReadOnly; }
-			set { Control.IsEditable = !value; Control.IsReadOnly = value; }
+			set { Control.IsReadOnly = value; }
 		}
 
 		public bool AutoComplete

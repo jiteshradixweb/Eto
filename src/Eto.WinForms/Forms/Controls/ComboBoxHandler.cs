@@ -74,15 +74,6 @@ namespace Eto.WinForms.Forms.Controls
 					if (readOnly)
 						Control.KeyPress += ControlOnKeyPress;
 				}
-				if(value)
-				{
-					Control.DropDownStyle = swf.ComboBoxStyle.DropDownList;
-					Control.DrawMode = swf.DrawMode.OwnerDrawFixed;
-				}
-				else
-				{
-					Control.DropDownStyle = swf.ComboBoxStyle.DropDown;
-				}
 			}
 		}
 
