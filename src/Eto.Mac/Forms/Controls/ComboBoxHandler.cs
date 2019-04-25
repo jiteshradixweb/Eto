@@ -259,7 +259,12 @@ namespace Eto.Mac.Forms.Controls
 					}
 				}
 				else
-					Control.SelectItem(value);
+				{
+					if (Control.Count > 0)
+					{
+						Control.SelectItem(value);
+					}
+				}
 				if (value != lastSelected)
 				{
 					Callback.OnSelectedIndexChanged(Widget, EventArgs.Empty);
@@ -302,7 +307,7 @@ namespace Eto.Mac.Forms.Controls
 		{
 			get { return Control.StringValue; }
 			set
-			{ 
+			{
 				if (Text != value)
 				{
 					Control.StringValue = value ?? string.Empty;
@@ -323,7 +328,7 @@ namespace Eto.Mac.Forms.Controls
 		{
 			get { return !Control.Editable; }
 			set
-			{ 
+			{
 				Control.Editable = !value;
 				if (Control.Window != null)
 					Control.Window.MakeFirstResponder(null); // allows editing if currently focussed, so remove focus
