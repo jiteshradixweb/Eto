@@ -616,6 +616,7 @@ namespace Eto.GtkSharp.Forms
 							}
 							break;
 					}
+					Control.Show();
 				}
 			}
 		}
