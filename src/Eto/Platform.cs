@@ -408,7 +408,7 @@ namespace Eto
 						detected = Get(Platforms.WinForms, true, errors);
 				}
 
-				if (detected == null && EtoEnvironment.Platform.IsUnix)
+				if (detected == null) // && EtoEnvironment.Platform.IsUnix)
 				{
 					detected = Get(Platforms.Gtk, true, errors);
 #pragma warning disable CS0618
