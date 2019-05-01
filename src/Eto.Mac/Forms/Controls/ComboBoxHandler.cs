@@ -264,6 +264,10 @@ namespace Eto.Mac.Forms.Controls
 					{
 						Control.SelectItem(value);
 					}
+					else
+					{
+						lastSelected = value;
+					}
 				}
 				if (value != lastSelected)
 				{
