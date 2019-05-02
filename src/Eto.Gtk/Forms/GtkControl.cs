@@ -467,7 +467,7 @@ namespace Eto.GtkSharp.Forms
 				var p = new PointF((float)args.Event.X, (float)args.Event.Y);
 				Keys modifiers = args.Event.State.ToEtoKey();
 				MouseButtons buttons = args.Event.State.ToEtoMouseButtons();
-				SizeF delta;
+				SizeF delta = new SizeF(0, 0);
 
 				switch (args.Event.Direction)
 				{
@@ -482,6 +482,24 @@ namespace Eto.GtkSharp.Forms
 						break;
 					case Gdk.ScrollDirection.Up:
 						delta = new SizeF(0f, ScrollAmount);
+						break;
+					case Gdk.ScrollDirection.Smooth:
+						if (args.Event.DeltaY > 0)
+						{
+							delta = new SizeF(0f, -ScrollAmount);
+						}
+						else if (args.Event.DeltaY < 0)
+						{
+							delta = new SizeF(0f, ScrollAmount);
+						}
+						else if (args.Event.DeltaX > 0)
+						{
+							delta = new SizeF(-ScrollAmount, 0f);
+						}
+						else if (args.Event.DeltaX < 0)
+						{
+							delta = new SizeF(ScrollAmount, 0f);
+						}
 						break;
 					default:
 						throw new NotSupportedException();
