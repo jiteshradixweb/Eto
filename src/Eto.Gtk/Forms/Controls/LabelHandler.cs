@@ -86,7 +86,7 @@ namespace Eto.GtkSharp.Forms.Controls
 			{
 			}
 
-			protected override Gtk.SizeRequestMode OnGetRequestMode() => Gtk.SizeRequestMode.HeightForWidth;
+			protected override Gtk.SizeRequestMode OnGetRequestMode() => Gtk.SizeRequestMode.ConstantSize;
 
 			protected override void OnGetPreferredWidth(out int minimum_width, out int natural_width)
 			{
