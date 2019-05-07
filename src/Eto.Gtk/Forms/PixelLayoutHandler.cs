@@ -15,12 +15,12 @@ namespace Eto.GtkSharp.Forms
 #if GTK3
 		class EtoVBox : Gtk.VBox
 		{
-			protected override void OnAdjustSizeRequest(Gtk.Orientation orientation, out int minimum_size, out int natural_size)
-			{
-				base.OnAdjustSizeRequest(orientation, out minimum_size, out natural_size);
-				// Gtk.Fixed only uses minimum size, not natural size. ugh.
-				minimum_size = natural_size;
-			}
+			//protected override void OnAdjustSizeRequest(Gtk.Orientation orientation, out int minimum_size, out int natural_size)
+			//{
+			//	base.OnAdjustSizeRequest(orientation, out minimum_size, out natural_size);
+			//	// Gtk.Fixed only uses minimum size, not natural size. ugh.
+			//	minimum_size = natural_size;
+			//}
 		}
 #endif
 
@@ -33,7 +33,7 @@ namespace Eto.GtkSharp.Forms
 			if (widget.Parent != null)
 				((Gtk.Container)widget.Parent).Remove(widget);
 			widget.ShowAll();
-			widget = new EtoVBox { Child = widget };
+			widget = new EtoVBox { Child = widget, Expand = true };
 #else
 			var widget = ctl.ContainerControl;
 			if (widget.Parent != null)

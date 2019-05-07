@@ -5,14 +5,20 @@ namespace Eto.GtkSharp.Forms.Controls
 	public class PanelHandler : GtkPanel<Gtk.EventBox, Panel, Panel.ICallback>, Panel.IHandler
 	{
 #if GTK3
+		readonly GtkShrinkableVBox box;
+
 		public PanelHandler()
 		{
 			Control = new Gtk.EventBox();
+			box = new GtkShrinkableVBox();
+			box.Resizable = true;
+			Control.Add(box);
 		}
 
 		protected override void SetContainerContent(Gtk.Widget content)
 		{
-			Control.Add(content);
+			//Control.Add(content);
+			box.Add(content);
 		}
 #else
 		//readonly Gtk.VBox box;
