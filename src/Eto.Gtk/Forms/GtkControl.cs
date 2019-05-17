@@ -620,11 +620,6 @@ namespace Eto.GtkSharp.Forms
 				if (e != null)
 				{
 					handler.Callback.OnKeyDown(Handler.Widget, e);
-					Handler.Widget.VisualControls.ToList().ForEach(ctrl =>
-					{
-						handler.Callback.OnKeyDown(ctrl, e);
-						ctrl.VisualControls.ToList().ForEach(ctrl1 => handler.Callback.OnKeyDown(ctrl1, e));
-					});
 					args.RetVal = e.Handled;
 				}
 

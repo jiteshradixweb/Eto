@@ -12,6 +12,7 @@ namespace Eto.GtkSharp.Forms.Controls
 			Control = new Gtk.EventBox();
 			box = new GtkShrinkableVBox();
 			box.Resizable = true;
+			Control.CanFocus = true;
 			Control.Add(box);
 		}
 
