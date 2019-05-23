@@ -18,7 +18,7 @@ namespace Eto.Forms
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Eto.Forms.ScrollEventArgs"/> class.
 		/// </summary>
-		/// <param name="Value">New Value.</param>
+		/// <param name="value">New Value.</param>
 		public ScrollBarEventArgs(int value)
 		{
 			this.NewValue = value;
@@ -50,7 +50,7 @@ namespace Eto.Forms
 		public const string ScrollEvent = "VerticalScrollbar.ScrollEvent";
 
 		/// <summary>
-		/// Event to handle when the <see cref="ScrollPosition"/> changes
+		/// Event to handle when the ScrollPosition changes
 		/// </summary>
 		public event EventHandler<ScrollBarEventArgs> Scroll
 		{
@@ -145,6 +145,9 @@ namespace Eto.Forms
 		/// <returns>The callback instance to use for this widget</returns>
 		protected override object GetCallback() { return callback; }
 
+		/// <summary>
+		/// Interface for scroll event.
+		/// </summary>
 		public new interface ICallback : CommonControl.ICallback
 		{
 			/// <summary>
