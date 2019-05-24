@@ -44,7 +44,7 @@ namespace Eto.GtkSharp.Forms.Menu
 			{
 				if (Handler.Control.Submenu != null)
 					Handler.ValidateItems();
-				
+
 				Handler.Callback.OnClick (Handler.Widget, e);
 			}
 		}
@@ -98,6 +98,7 @@ namespace Eto.GtkSharp.Forms.Menu
 			{
 				image = value;
 				Control.Image = image.ToGtk(Gtk.IconSize.Menu);
+				Control.AlwaysShowImage = true;
 			}
 		}
 
