@@ -132,7 +132,7 @@ namespace Eto.GtkSharp.Forms
 		protected virtual void SetSize(Size size)
 		{
 			ContainerControl.SetSizeRequest(size.Width, size.Height);
-			if (ContainerControl.Visible)
+			if (ContainerControl.Visible && size.Width >= 0 && size.Height >= 0)
 			{
 				ContainerControl.SetAllocation(new Gdk.Rectangle(new Gdk.Point(Location.X, Location.Y), new Gdk.Size(size.Width, size.Height)));
 			}
