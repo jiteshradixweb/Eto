@@ -42,7 +42,7 @@ namespace Eto.GtkSharp.Forms.Menu
 
 			public void HandleActivated(object sender, EventArgs e)
 			{
-				if (Handler.Control.Submenu != null)
+				if (Handler.Control != null && Handler.Control.Submenu != null)
 					Handler.ValidateItems();
 
 				Handler.Callback.OnClick (Handler.Widget, e);

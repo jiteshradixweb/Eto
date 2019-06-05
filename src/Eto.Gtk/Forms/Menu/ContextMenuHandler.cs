@@ -124,6 +124,7 @@ namespace Eto.GtkSharp.Forms.Menu
 		{
 			// trap key events to handle shortcut keys
 			attachedSubmenus = Widget.GetChildren()
+				.Where(r => !r.IsDisposed)
 				.Select(r => r.Handler)
 				.OfType<ButtonMenuItemHandler>()
 				.Select(r => r.Control.Submenu)

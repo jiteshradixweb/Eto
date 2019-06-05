@@ -20,9 +20,12 @@ namespace Eto.GtkSharp.Forms.Menu
 			{
 				foreach (var item in subMenu.Items)
 				{
-					var handler = item.Handler as IMenuActionItemHandler;
-					if (handler != null)
-						handler.TriggerValidate();
+					if (!item.IsDisposed)
+					{
+						var handler = item.Handler as IMenuActionItemHandler;
+						if (handler != null)
+							handler.TriggerValidate();
+					}
 				}
 			}
 		}
