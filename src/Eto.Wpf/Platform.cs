@@ -132,6 +132,7 @@ namespace Eto.Wpf
 			p.Add<DocumentControl.IHandler>(() => new ThemedDocumentControlHandler());
 			p.Add<DocumentPage.IHandler>(() => new ThemedDocumentPageHandler());
 			p.Add<VerticalScrollbar.IHandler>(() => new VerticalScrollbarHandler());
+			p.Add<HorizontalScrollbar.IHandler>(() => new HorizontalScrollbarHandler());
 			p.Add<SegmentedButton.IHandler>(() => new ThemedSegmentedButtonHandler());
 			p.Add<ButtonSegmentedItem.IHandler>(() => new ThemedButtonSegmentedItemHandler());
 			p.Add<MenuSegmentedItem.IHandler>(() => new ThemedMenuSegmentedItemHandler());

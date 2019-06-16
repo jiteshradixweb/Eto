@@ -1,58 +1,36 @@
 using System;
-using Eto.Drawing;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Text;
 
 namespace Eto.Forms
 {
-	/// <summary>
-	/// Vertical ScrollBar
-	/// </summary>
-	[Handler(typeof(VerticalScrollbar.IHandler))]
-	public class VerticalScrollbar : Scrollbar
+	[Handler(typeof(HorizontalScrollbar.IHandler))]
+	public class HorizontalScrollbar : Scrollbar
 	{
 		new IHandler Handler { get { return (IHandler)base.Handler; } }
 
-		/// <summary>
-		/// Vertical Scroll Bar.
-		/// </summary>
-		public VerticalScrollbar()
+		public HorizontalScrollbar()
 		{
 		}
 
-		static VerticalScrollbar()
+		static HorizontalScrollbar()
 		{
-			EventLookup.Register<VerticalScrollbar>(c => c.OnScroll(null), Scrollable.ScrollEvent);
+			EventLookup.Register<HorizontalScrollbar>(c => c.OnScroll(null), Scrollable.ScrollEvent);
 		}
-		/// <summary>
-		/// Event identifier for handlers when attaching the <see cref="VerticalScrollbar.Scroll"/> event
-		/// </summary>
-		public const string ScrollEvent = "VerticalScrollbar.ScrollEvent";
+		public const string ScrollEvent = "HorizontalScrollbar.ScrollEvent";
 
-		/// <summary>
-		/// Event to handle when the ScrollPosition changes
-		/// </summary>
 		public override event EventHandler<ScrollBarEventArgs> Scroll
 		{
 			add { Properties.AddHandlerEvent(ScrollEvent, value); }
 			remove { Properties.RemoveEvent(ScrollEvent, value); }
 		}
 
-		/// <summary>
-		/// Raises the <see cref="Scroll"/> event
-		/// </summary>
-		/// <param name="e">Scroll event arguments</param>
 		protected virtual void OnScroll(ScrollBarEventArgs e)
 		{
 			Properties.TriggerEvent(ScrollEvent, this, e);
 		}
 
-		/// <summary>
-		/// Name property for vertical scroll bar.
-		/// </summary>
-		/// <remarks>
-		/// Name
-		/// </remarks>
-		/// <value>Name of Vertical scroll bar</value>
 		public string Name
 		{
 			get { return Handler.Name; }
@@ -142,15 +120,12 @@ namespace Eto.Forms
 		/// <returns>The callback instance to use for this widget</returns>
 		protected override object GetCallback() { return callback; }
 
-		/// <summary>
-		/// Interface for scroll event.
-		/// </summary>
 		public new interface ICallback : CommonControl.ICallback
 		{
 			/// <summary>
 			/// Raises the scroll event.
 			/// </summary>
-			void OnScroll(VerticalScrollbar widget, ScrollBarEventArgs e);
+			void OnScroll(HorizontalScrollbar widget, ScrollBarEventArgs e);
 		}
 
 		/// <summary>
@@ -161,7 +136,7 @@ namespace Eto.Forms
 			/// <summary>
 			/// Raises the scroll event.
 			/// </summary>
-			public void OnScroll(VerticalScrollbar widget, ScrollBarEventArgs e)
+			public void OnScroll(HorizontalScrollbar widget, ScrollBarEventArgs e)
 			{
 				using (widget.Platform.Context)
 					widget.OnScroll(e);

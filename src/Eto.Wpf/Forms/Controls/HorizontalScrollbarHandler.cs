@@ -7,7 +7,7 @@ using Eto.Drawing;
 
 namespace Eto.Wpf.Forms.Controls
 {
-	public class VerticalScrollbarHandler : WpfControl<swc.Primitives.ScrollBar, VerticalScrollbar, VerticalScrollbar.ICallback>, VerticalScrollbar.IHandler
+	public class HorizontalScrollbarHandler : WpfControl<swc.Primitives.ScrollBar, HorizontalScrollbar, HorizontalScrollbar.ICallback>, HorizontalScrollbar.IHandler
 	{
 		public string Name { get => Control.Name; set => Control.Name = value; }
 		public int Maximum { get => Convert.ToInt32(Control.Maximum); set => Control.Maximum = value; }
@@ -18,10 +18,10 @@ namespace Eto.Wpf.Forms.Controls
 
 		public int SmallChange { get => Convert.ToInt32(Control.SmallChange); set => Control.SmallChange = value; }
 
-		public VerticalScrollbarHandler()
+		public HorizontalScrollbarHandler()
 		{
 			Control = new swc.Primitives.ScrollBar();
-			Control.Orientation = swc.Orientation.Vertical;
+			Control.Orientation = swc.Orientation.Horizontal;
 			Control.Scroll += (sender, e) =>
 			{
 				Callback.OnScroll(Widget, new ScrollBarEventArgs(Convert.ToInt32(e.NewValue)));

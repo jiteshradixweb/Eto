@@ -19,5 +19,9 @@ namespace Eto.GtkSharp.Forms.Controls
 				Callback.OnScroll(Widget, new ScrollBarEventArgs(Convert.ToInt32(Control.Value)));
 			};
         }
-    }
+
+		// TODO:
+		public int LargeChange { get; set; }
+		public int SmallChange { get; set; }
+	}
 }
