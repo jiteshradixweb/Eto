@@ -42,9 +42,9 @@ namespace Eto.Mac.Forms.Controls
 			public WeakReference WeakHandler { get; set; }
 
 			public object Handler
-			{ 
+			{
 				get { return WeakHandler.Target; }
-				set { WeakHandler = new WeakReference(value); } 
+				set { WeakHandler = new WeakReference(value); }
 			}
 
 			public EtoBox(GroupBoxHandler handler)
@@ -109,13 +109,13 @@ namespace Eto.Mac.Forms.Controls
 			set { Control.Title = value; }
 		}
 
-		public override SizeF GetPreferredSize(SizeF availableSize)
-		{
-			var boundsSize = new SizeF(16, (float)TitleCell.CellSize.Height + 8);
-			availableSize -= boundsSize;
+		//public override SizeF GetPreferredSize(SizeF availableSize)
+		//{
+		//	var boundsSize = new SizeF(16, (float)TitleCell.CellSize.Height + 8);
+		//	availableSize -= boundsSize;
 
-			return base.GetPreferredSize(availableSize) + boundsSize;
-		}
+		//	return base.GetPreferredSize(availableSize) + boundsSize;
+		//}
 
 		NSTextFieldCell TitleCell { get { return (NSTextFieldCell)Control.TitleCell; } }
 
@@ -123,8 +123,8 @@ namespace Eto.Mac.Forms.Controls
 		{
 			get { return TitleCell.TextColor.ToEto(); }
 			set
-			{ 
-				TitleCell.TextColor = value.ToNSUI(); 
+			{
+				TitleCell.TextColor = value.ToNSUI();
 				Control.SetNeedsDisplay();
 			}
 		}
