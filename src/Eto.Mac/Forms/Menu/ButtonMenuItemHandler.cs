@@ -23,7 +23,7 @@ namespace Eto.Mac.Forms.Menu
 		Image image;
 		string text;
 		bool showImage = ShowImageDefault;
-		public static bool ShowImageDefault;
+		public static bool ShowImageDefault = true;
 
 		public bool ShowImage
 		{
