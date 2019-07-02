@@ -58,7 +58,16 @@ namespace Eto.Wpf.Drawing
 
 		public void Create(Stream stream)
 		{
-			Control = swmi.BitmapFrame.Create(stream, swmi.BitmapCreateOptions.None, swmi.BitmapCacheOption.OnLoad);
+			//Control = swmi.BitmapFrame.Create(stream, swmi.BitmapCreateOptions.None, swmi.BitmapCacheOption.OnLoad);
+			var bitmap = swmi.BitmapFrame.Create(stream, swmi.BitmapCreateOptions.None, swmi.BitmapCacheOption.OnLoad);
+			if (bitmap.Format == swm.PixelFormats.Bgr24 || bitmap.Format == swm.PixelFormats.Bgr32 || bitmap.Format == swm.PixelFormats.Pbgra32)
+			{
+				Control = bitmap;
+			}
+			else
+			{
+				Control = new swmi.FormatConvertedBitmap(bitmap, swm.PixelFormats.Pbgra32, null, 0);
+			}
 		}
 
 		public void Create(int width, int height, PixelFormat pixelFormat)

@@ -89,7 +89,16 @@ namespace Eto.WinForms.Drawing
 
 		public void Create(Stream stream)
 		{
-			Control = new sd.Bitmap(stream);
+			//Control = new sd.Bitmap(stream);
+			var bitmap = new sd.Bitmap(stream);
+			if(bitmap.PixelFormat == sdi.PixelFormat.Format32bppRgb || bitmap.PixelFormat == sdi.PixelFormat.Format24bppRgb || bitmap.PixelFormat == sdi.PixelFormat.Format32bppPArgb)
+			{
+				Control = bitmap;
+			}
+			else
+			{
+				Control = bitmap.Clone(new sd.RectangleF(0, 0, bitmap.Width, bitmap.Height), sdi.PixelFormat.Format32bppPArgb);
+			}
 		}
 
 		public void Create(int width, int height, PixelFormat pixelFormat)
@@ -134,7 +143,7 @@ namespace Eto.WinForms.Drawing
 				pixelFormat = hasAlpha ? sdi.PixelFormat.Format32bppArgb : sdi.PixelFormat.Format32bppRgb;
 			}
 			Control = new sd.Bitmap(width, height, pixelFormat);
-			
+
             using (var graphics = sd.Graphics.FromImage(Control))
 			{
 				graphics.InterpolationMode = interpolation.ToSD();
