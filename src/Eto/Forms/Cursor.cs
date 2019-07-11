@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 
 namespace Eto.Forms
 {
@@ -71,6 +72,16 @@ namespace Eto.Forms
 		}
 
 		/// <summary>
+		/// Initializes a new instance of the <see cref="Eto.Forms.Cursor"/> class with the specified <paramref name="stream"/>.
+		/// </summary>
+		/// <param name="stream">stream of cursor.</param>
+		public Cursor(Stream stream)
+		{
+			Handler.Create(stream);
+			Initialize();
+		}
+
+		/// <summary>
 		/// Platform interface for the <see cref="Cursor"/> class
 		/// </summary>
 		[AutoInitialize(false)]
@@ -81,6 +92,12 @@ namespace Eto.Forms
 			/// </summary>
 			/// <param name="type">Cursor type.</param>
 			void Create(CursorType type);
+
+			/// <summary>
+			/// Creates the cursor instance with the specified <paramref name="stream"/>.
+			/// </summary>
+			/// <param name="stream">Cursor stream.</param>
+			void Create(Stream stream);
 		}
 	}
 }

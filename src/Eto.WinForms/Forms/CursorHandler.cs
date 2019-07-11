@@ -1,11 +1,17 @@
 using System;
 using SWF = System.Windows.Forms;
 using Eto.Forms;
+using System.IO;
 
 namespace Eto.WinForms.Forms
 {
 	public class CursorHandler : WidgetHandler<SWF.Cursor, Cursor>, Cursor.IHandler
 	{
+		public void Create(Stream stream)
+		{
+			Control = new SWF.Cursor(stream);
+		}
+
 		public void Create (CursorType cursor)
 		{
 			switch (cursor) {

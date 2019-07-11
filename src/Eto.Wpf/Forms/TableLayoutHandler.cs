@@ -226,7 +226,9 @@ namespace Eto.Wpf.Forms
 					}
 				}
 			}
-			Control.InvalidateMeasure();
+			//Not Resizes table and control properly.
+			//Control.InvalidateMeasure();
+			Control.UpdateLayout();
 		}
 
 		void SetChildrenSizes(bool force)

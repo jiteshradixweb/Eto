@@ -2,11 +2,17 @@ using System;
 using Eto.Forms;
 using sw = System.Windows;
 using swi = System.Windows.Input;
+using System.IO;
 
 namespace Eto.Wpf.Forms
 {
 	public class CursorHandler : WidgetHandler<swi.Cursor, Cursor>, Cursor.IHandler
 	{
+		public void Create(Stream stream)
+		{
+			Control = new swi.Cursor(stream);
+		}
+
 		public void Create (CursorType cursor)
 		{
 			switch (cursor) {
