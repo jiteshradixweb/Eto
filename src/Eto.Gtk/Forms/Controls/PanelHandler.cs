@@ -1,3 +1,4 @@
+using System;
 using Eto.Forms;
 
 namespace Eto.GtkSharp.Forms.Controls
@@ -9,7 +10,7 @@ namespace Eto.GtkSharp.Forms.Controls
 
 		public PanelHandler()
 		{
-			Control = new Gtk.EventBox();
+			Control = new EtoEventBox { Handler = this };
 			box = new GtkShrinkableVBox();
 			box.Resizable = true;
 			Control.CanFocus = true;
