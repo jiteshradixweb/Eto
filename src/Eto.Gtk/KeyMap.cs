@@ -130,8 +130,8 @@ namespace Eto.GtkSharp
 			keymap.Add(Gdk.Key.Pause, Keys.Pause);
 			keymap.Add(Gdk.Key.Clear, Keys.Clear);
 			keymap.Add(Gdk.Key.KP_Equal, Keys.KeypadEqual);
-			keymap.Add(Gdk.Key.Alt_R, Keys.Menu);
-			keymap.Add(Gdk.Key.Alt_L, Keys.Menu);
+			//keymap.Add(Gdk.Key.Alt_R, Keys.Menu);
+			//keymap.Add(Gdk.Key.Alt_L, Keys.Menu);
 			keymap.Add(Gdk.Key.backslash, Keys.Backslash);
 			keymap.Add(Gdk.Key.equal, Keys.Equal);
 			keymap.Add(Gdk.Key.semicolon, Keys.Semicolon);
@@ -153,6 +153,14 @@ namespace Eto.GtkSharp
 			keymap.Add(Gdk.Key.KP_8, Keys.Keypad8);
 			keymap.Add(Gdk.Key.KP_9, Keys.Keypad9);
 			keymap.Add(Gdk.Key.KP_Enter, Keys.Enter);
+			keymap.Add(Gdk.Key.Shift_L, Keys.LeftShift);
+			keymap.Add(Gdk.Key.Shift_R, Keys.RightShift);
+			keymap.Add(Gdk.Key.Control_L, Keys.LeftControl);
+			keymap.Add(Gdk.Key.Control_R, Keys.RightControl);
+			keymap.Add(Gdk.Key.Alt_L, Keys.LeftAlt);
+			keymap.Add(Gdk.Key.Alt_R, Keys.RightAlt);
+			keymap.Add(Gdk.Key.Meta_L, Keys.LeftApplication);
+			keymap.Add(Gdk.Key.Meta_R, Keys.RightApplication);
 
 			if (EtoEnvironment.Platform.IsMac)
 			{
