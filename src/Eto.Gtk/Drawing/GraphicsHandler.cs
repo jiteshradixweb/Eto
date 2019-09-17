@@ -453,7 +453,7 @@ namespace Eto.GtkSharp.Drawing
 		{
 			var cairoMatrix = matrix.ToCairo();
             Control.Transform(cairoMatrix);
-			
+
 			currentTransform = Cairo.Matrix.Multiply(cairoMatrix, currentTransform);
 		}
 
@@ -594,8 +594,10 @@ namespace Eto.GtkSharp.Drawing
 
 		public void ResetClip()
 		{
+			ReverseTransform();
 			clipBounds = null;
 			Control.ResetClip();
+			ApplyTransform();
 		}
 
 		public void Clear(SolidBrush brush)
