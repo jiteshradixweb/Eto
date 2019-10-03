@@ -508,19 +508,19 @@ namespace Eto.GtkSharp.Forms
 					case Gdk.ScrollDirection.Smooth:
 						if (args.Event.DeltaY > 0)
 						{
-							delta = new SizeF(0f, -ScrollAmount);
+							delta = new SizeF(0f, -h.ScrollAmount);
 						}
 						else if (args.Event.DeltaY < 0)
 						{
-							delta = new SizeF(0f, ScrollAmount);
+							delta = new SizeF(0f, h.ScrollAmount);
 						}
 						else if (args.Event.DeltaX > 0)
 						{
-							delta = new SizeF(-ScrollAmount, 0f);
+							delta = new SizeF(-h.ScrollAmount, 0f);
 						}
 						else if (args.Event.DeltaX < 0)
 						{
-							delta = new SizeF(ScrollAmount, 0f);
+							delta = new SizeF(h.ScrollAmount, 0f);
 						}
 						break;
 					default:
