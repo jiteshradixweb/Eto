@@ -93,6 +93,14 @@ namespace Eto.Mac.Forms
 			Handler.Callback.OnWindowStateChanged(Handler.Widget, EventArgs.Empty);
 		}
 
+		public bool DisableSetOrigin { get; set; }
+
+		public override void SetFrameOrigin(CGPoint aPoint)
+		{
+			if (!DisableSetOrigin)
+				base.SetFrameOrigin(aPoint);
+		}
+
 		public override void RecalculateKeyViewLoop()
 		{
 			base.RecalculateKeyViewLoop();
@@ -127,7 +135,6 @@ namespace Eto.Mac.Forms
 
 	static class MacWindow
 	{
-		internal static readonly object MovableByWindowBackground_Key = new object();
 		internal static readonly object InitialLocation_Key = new object();
 		internal static readonly object PreferredClientSize_Key = new object();
 		internal static readonly Selector selSetStyleMask = new Selector("setStyleMask:");
@@ -177,14 +184,10 @@ namespace Eto.Mac.Forms
 		/// <summary>
 		/// Allow moving the window by dragging the background, null to only enable it in certain cases (e.g. when borderless)
 		/// </summary>
-		public bool? MovableByWindowBackground
+		public bool MovableByWindowBackground
 		{
-			get => Widget.Properties.Get<bool?>(MacWindow.MovableByWindowBackground_Key);
-			set
-			{
-				if (Widget.Properties.TrySet(MacWindow.MovableByWindowBackground_Key, value))
-					SetMovable();
-			}
+			get => Control.MovableByWindowBackground;
+			set => Control.MovableByWindowBackground = value;
 		}
 
 		protected override SizeF GetNaturalSize(SizeF availableSize)
@@ -502,11 +505,6 @@ namespace Eto.Mac.Forms
 				button.Enabled = Maximizable && Resizable;
 		}
 
-		void SetMovable()
-		{
-			Control.MovableByWindowBackground = MovableByWindowBackground ?? (Resizable && WindowStyle == WindowStyle.None);
-		}
-
 		public bool Resizable
 		{
 			get { return Control.StyleMask.HasFlag(NSWindowStyle.Resizable); }
@@ -519,7 +517,6 @@ namespace Eto.Mac.Forms
 					else
 						Control.StyleMask &= ~NSWindowStyle.Resizable;
 					SetButtonStates();
-					SetMovable();
 				}
 			}
 		}
@@ -821,16 +818,14 @@ namespace Eto.Mac.Forms
 			// location is relative to the main screen, translate to bottom left, inversed
 			var mainFrame = NSScreen.Screens[0].Frame;
 			var frame = Control.Frame;
-			var point = new CGPoint((nfloat)value.X, (nfloat)(mainFrame.Height - value.Y - frame.Height));
-			Control.SetFrameOrigin(point);
+			var point = new CGPoint((nfloat)value.X, (nfloat)(mainFrame.Height - value.Y));
 			if (Control.Screen == null)
 			{
 				// ensure that the control lands on a screen
 				point.X = (nfloat)Math.Min(Math.Max(mainFrame.X, point.X), mainFrame.Right - frame.Width);
 				point.Y = (nfloat)Math.Min(Math.Max(mainFrame.Y, point.Y), mainFrame.Bottom - frame.Height);
-
-				Control.SetFrameOrigin(point);
 			}
+			Control.SetFrameTopLeftPoint(point);
 		}
 
 		public WindowState WindowState
@@ -940,7 +935,8 @@ namespace Eto.Mac.Forms
 				SetLocation(InitialLocation.Value);
 				InitialLocation = null;
 			}
-			Control.Center();
+			else
+				Control.Center();
 		}
 
 		#region IMacContainer implementation
@@ -1027,8 +1023,6 @@ namespace Eto.Mac.Forms
 					// don't use animation when there's no border.
 					if (value == WindowStyle.None && Control.AnimationBehavior == NSWindowAnimationBehavior.Default)
 						Control.AnimationBehavior = NSWindowAnimationBehavior.None;
-
-					SetMovable();
 				}
 			}
 		}
