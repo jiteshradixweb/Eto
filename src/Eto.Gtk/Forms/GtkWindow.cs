@@ -138,6 +138,7 @@ namespace Eto.GtkSharp.Forms
 			{
 				containerBox.Resizable = value;
 				resizable = value;
+				Control.Resizable = value;
 				SetMinMax(null);
 			}
 		}
