@@ -524,9 +524,9 @@ namespace Eto.GtkSharp.Forms
 						}
 						break;
 #if GTKCORE
-					case Gdk.ScrollDirection.Smooth:
-						delta = new SizeF((float)args.Event.DeltaX, (float)args.Event.DeltaY);
-						break;
+					//case Gdk.ScrollDirection.Smooth:
+					//	delta = new SizeF((float)args.Event.DeltaX, (float)args.Event.DeltaY);
+					//	break;
 #endif
 					default:
 						throw new NotSupportedException();

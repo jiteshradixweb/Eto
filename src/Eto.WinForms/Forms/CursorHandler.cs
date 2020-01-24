@@ -10,10 +10,10 @@ namespace Eto.WinForms.Forms
 {
 	public class CursorHandler : WidgetHandler<swf.Cursor, Cursor>, Cursor.IHandler
 	{
-		public void Create(Stream stream)
-		{
-			Control = new SWF.Cursor(stream);
-		}
+		//public void Create(Stream stream)
+		//{
+		//	Control = new SWF.Cursor(stream);
+		//}
 
 		public void Create (CursorType cursor)
 		{

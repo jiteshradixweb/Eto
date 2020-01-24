@@ -39,10 +39,10 @@ namespace Eto.Mac.Forms
 {
 	public class CursorHandler : WidgetHandler<NSCursor, Cursor>, Cursor.IHandler
 	{
-		public void Create(Stream stream)
-		{
-			Control = new NSCursor(new NSImage(NSData.FromStream(stream)), new CGPoint(0,0));
-		}
+		//public void Create(Stream stream)
+		//{
+		//	Control = new NSCursor(new NSImage(NSData.FromStream(stream)), new CGPoint(0,0));
+		//}
 
 		public CursorHandler()
 		{
