@@ -15,18 +15,18 @@ namespace Eto.GtkSharp.Forms
 			Control = new Gdk.Cursor(cursor.ToGdk());
 		}
 
-		//public void Create(Stream stream)
-		//{
-		//	if (EtoEnvironment.Platform.IsUnix)
-		//	{
-		//		//Below function works on only Linux OS, because in windows OS it crashes due to Gdk.Display value
-		//		Control = new Gdk.Cursor(Gdk.Display.Default, new Gdk.Pixbuf(stream), 0, 0);
-		//	}
-		//	else
-		//	{
-		//		Control = new Gdk.Cursor(CursorType.Arrow.ToGdk());
-		//	}
-		//}
+		public void Create(Stream stream)
+		{
+			if (EtoEnvironment.Platform.IsUnix)
+			{
+				//Below function works on only Linux OS, because in windows OS it crashes due to Gdk.Display value
+				Control = new Gdk.Cursor(Gdk.Display.Default, new Gdk.Pixbuf(stream), 0, 0);
+			}
+			else
+			{
+				Control = new Gdk.Cursor(CursorType.Arrow.ToGdk());
+			}
+		}
 
 		public void Create(Bitmap image, PointF hotspot)
 		{
@@ -35,7 +35,7 @@ namespace Eto.GtkSharp.Forms
 
 		public void Create(string fileName) => Create(new Gdk.Pixbuf(fileName));
 
-		public void Create(Stream stream) => Create(new Gdk.Pixbuf(stream));
+		//public void Create(Stream stream) => Create(new Gdk.Pixbuf(stream));
 
 		void Create(Gdk.Pixbuf pixbuf)
 		{
