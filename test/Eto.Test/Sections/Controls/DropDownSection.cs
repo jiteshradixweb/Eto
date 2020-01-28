@@ -27,6 +27,8 @@ namespace Eto.Test.Sections.Controls
 		Control Default()
 		{
 			var control = new DropDown();
+
+
 			LogEvents(control);
 
 			var layout = new DynamicLayout { DefaultSpacing = new Size(5, 5) };
@@ -57,12 +59,22 @@ namespace Eto.Test.Sections.Controls
 			var control = new Button { Text = "Add Rows" };
 			control.Click += (sender, e) =>
 			{
-				var image1 = TestIcons.Logo.WithSize(32, 32);
+				Bitmap bitmap = new Bitmap(100, 16, PixelFormat.Format24bppRgb);
+
+				for(int x=0; x<bitmap.Width; x++)
+				{
+					for(int y=0; y<bitmap.Height; y++)
+					{
+						bitmap.SetPixel(x, y, Colors.CornflowerBlue);
+					}
+				}
+
+				var image1 = (Image) bitmap; // TestIcons.Logo.WithSize(32, 32);
 				var image2 = TestIcons.TestIcon.WithSize(16, 16);
 				for (int i = 0; i < 10; i++)
 				{
 					if (AddWithImages)
-						list.Items.Add(new ImageListItem { Text = "Item " + list.Items.Count, Image = i % 2 == 0 ? image1 : image2 });
+						list.Items.Add(new ImageListItem { Image = image1, Text = "" }); // Text = "Item " + list.Items.Count, i % 2 == 0 ? image1 : image2
 					else
 						list.Items.Add(new ListItem { Text = "Item " + list.Items.Count });
 				}

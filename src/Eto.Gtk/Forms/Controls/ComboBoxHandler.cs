@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -54,7 +54,14 @@ namespace Eto.GtkSharp.Forms.Controls
 
 			public void HandleKeyDown(object sender, Gtk.KeyReleaseEventArgs args)
 			{
-				Handler.Callback.OnKeyDown(Handler.Widget, args.Event.ToEto());
+				var e = args.Event.ToEto();
+
+				if(e == null)
+				{
+					return;
+				}
+
+				Handler.Callback.OnKeyDown(Handler.Widget, e);
 			}
 		}
 

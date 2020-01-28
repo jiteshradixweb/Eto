@@ -39,5 +39,8 @@ namespace Eto.WinForms.Forms.Controls
 				Callback.OnScroll(Widget, new ScrollBarEventArgs(e.NewValue));
 			};
 		}
+
+		public int LargeChange { get; set; }
+		public int SmallChange { get; set; }
 	}
 }
