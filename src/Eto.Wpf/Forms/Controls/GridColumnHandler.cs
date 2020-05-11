@@ -9,6 +9,7 @@ namespace Eto.Wpf.Forms.Controls
 	{
 		Grid Widget { get; }
 		bool Loaded { get; }
+		bool DisableAutoScrollToSelection { get; }
 		sw.FrameworkElement SetupCell (IGridColumnHandler column, sw.FrameworkElement defaultContent);
 		void FormatCell (IGridColumnHandler column, ICellHandler cell, sw.FrameworkElement element, swc.DataGridCell gridcell, object dataItem);
 		void CellEdited(int row, swc.DataGridColumn dataGridColumn, object dataItem);
@@ -131,14 +132,14 @@ namespace Eto.Wpf.Forms.Controls
 
 		internal ICellHandler DataCellHandler => DataCell?.Handler as ICellHandler;
 
-		internal bool OnMouseDown(GridCellMouseEventArgs args, sw.DependencyObject hitTestResult, swc.DataGridCell cell)
+		internal void OnMouseDown(GridCellMouseEventArgs args, sw.DependencyObject hitTestResult, swc.DataGridCell cell)
 		{
-			return DataCellHandler?.OnMouseDown(args, hitTestResult, cell) ?? false;
+			DataCellHandler?.OnMouseDown(args, hitTestResult, cell);
 		}
 
-		internal bool OnMouseUp(GridCellMouseEventArgs args, sw.DependencyObject hitTestResult, swc.DataGridCell cell)
+		internal void OnMouseUp(GridCellMouseEventArgs args, sw.DependencyObject hitTestResult, swc.DataGridCell cell)
 		{
-			return DataCellHandler?.OnMouseUp(args, hitTestResult, cell) ?? false;
+			DataCellHandler?.OnMouseUp(args, hitTestResult, cell);
 		}
 
 		swc.DataGridColumn IGridColumnHandler.Control => Control;

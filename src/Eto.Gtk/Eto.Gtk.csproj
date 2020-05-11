@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <RootNamespace>Eto.GtkSharp</RootNamespace>
     <DefineConstants>$(DefineConstants);GTK3;GTKCORE</DefineConstants>
@@ -23,7 +23,7 @@ When building for the full framework, .NET Framework 4.6.1 or mono framework 5.1
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GtkSharp" Version="3.22.25.15" />
+    <PackageReference Include="GtkSharp" Version="3.22.25.74" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Eto\Eto.csproj" />

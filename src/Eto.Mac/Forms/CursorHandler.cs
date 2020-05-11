@@ -86,7 +86,7 @@ namespace Eto.Mac.Forms
 			}
 		}
 
-		public void Create(Bitmap image, PointF hotspot)
+		public void Create(Image image, PointF hotspot)
 		{
 			var nsimage = image.ToNS();
 			Control = new NSCursor(nsimage, hotspot.ToNS());
