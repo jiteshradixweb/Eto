@@ -833,5 +833,8 @@ namespace Eto.iOS.Drawing
 		{
 			Control.SetFillColorSpace(patternColorSpace);
 		}
+
+		public override IntPtr NativeHandle => Control.Handle;
+
 	}
 }

@@ -395,14 +395,14 @@ namespace Eto.Wpf.Drawing
 				measureBrush = new swm.SolidColorBrush(swm.Colors.White);
 #pragma warning disable CS0618 // 'FormattedText.FormattedText(string, CultureInfo, FlowDirection, Typeface, double, Brush)' is obsolete: 'Use the PixelsPerDip override'
 			var formattedText = new swm.FormattedText(text, CultureInfo.CurrentUICulture, sw.FlowDirection.LeftToRight, WpfTypeface, WpfSize, measureBrush);
-#pragma warning restore CS0618 // Type or member is obsolete
 			if (spaceHeight == null)
 				spaceHeight = new swm.FormattedText(" ", CultureInfo.CurrentUICulture, sw.FlowDirection.LeftToRight, WpfTypeface, WpfSize, measureBrush).Height;
 			formattedText = new swm.FormattedText(text, CultureInfo.CurrentUICulture, sw.FlowDirection.LeftToRight, WpfTypeface, WpfSize, measureBrush);
 			return new SizeF((float)formattedText.WidthIncludingTrailingWhitespace, (float)formattedText.Height);
-			var height = formattedText.Height;
-			if (text.Length == 0 || text.EndsWith("\n")) height += spaceHeight.Value;
-			return new SizeF((float)formattedText.WidthIncludingTrailingWhitespace, (float)height);
+#pragma warning restore CS0618 // Type or member is obsolete
+			//var height = formattedText.Height;
+			//if (text.Length == 0 || text.EndsWith("\n")) height += spaceHeight.Value;
+			//return new SizeF((float)formattedText.WidthIncludingTrailingWhitespace, (float)height);
 		}
 
 		//public SizeF MeasureString(string text)

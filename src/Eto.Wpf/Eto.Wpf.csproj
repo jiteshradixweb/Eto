@@ -44,10 +44,13 @@ You do not need to use any of the classes of this assembly (unless customizing t
   <PropertyGroup>
     <EmbedReferences>Microsoft.WindowsAPICodePack;Microsoft.WindowsAPICodePack.Shell;Xceed.Wpf.Toolkit;Interop.SHDocVw</EmbedReferences>
     <EmbedPrefix>Eto.Wpf.CustomControls.Assemblies</EmbedPrefix>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>EllisysEto.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
 

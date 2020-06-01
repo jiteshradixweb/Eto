@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard1.0;netstandard2.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <TreatWarningsAsErrors Condition="$(Configuration) == 'Release'">true</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors Condition="$(Configuration) == 'Release'">false</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
     <PackageId>Eto.Forms</PackageId>
@@ -35,6 +35,9 @@ To get more information about how to get started, read the wiki:
 
 https://github.com/picoe/Eto/wiki
     </PackageDescription>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>EllisysEto.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\Shared\EnumerableExtensions.cs" />

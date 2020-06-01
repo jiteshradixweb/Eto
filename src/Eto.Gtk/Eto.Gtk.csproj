@@ -20,6 +20,12 @@ You do not need to use any of the classes of this assembly (unless customizing t
 
 When building for the full framework, .NET Framework 4.6.1 or mono framework 5.10 or higher is required.
     </PackageDescription>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>EllisysEto.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
   </PropertyGroup>
 
   <ItemGroup>

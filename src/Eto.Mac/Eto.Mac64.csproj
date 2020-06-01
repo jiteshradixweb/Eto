@@ -27,6 +27,9 @@ Use Eto.Platform.XamMac2 if you want to distribute your app to the Mac App Store
 
 You do not need to use any of the classes of this assembly (unless customizing the MonoMac functionality of the platform), and should just use the UI controls from the Eto assembly.
     </PackageDescription>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>MicrosoftPublicKey.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>true</DelaySign>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\Shared\PlatformDetect.cs">
@@ -52,14 +55,19 @@ You do not need to use any of the classes of this assembly (unless customizing t
   </ItemGroup>
   
   <ItemGroup>
+    <None Remove="build\RunConfiguration.Default.targets" />
+    <None Remove="build\BundleMono.targets" />
+    <None Remove="build\BundleDotNetCore.targets" />
+    <None Remove="build\RunConfiguration.Mac.targets" />
+    <None Remove="build\Mac.targets" />
+    <None Remove="build\Mac.props" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="..\..\lib\monomac\LICENSE.txt" Pack="True" PackagePath="MonoMac-LICENSE.txt" PackageCopyToOutput="False">
       <Link>MonoMac-LICENSE.txt</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="build\*" Exclude="build\Mac.*" Pack="True" PackagePath="build" />
-    <None Include="build\Mac.targets" Pack="True" PackagePath="build\$(PackageId).targets" />
-    <None Include="build\Mac.props" Pack="True" PackagePath="build\$(PackageId).props" />
-    
     <None Include="..\..\build\MSBuildTaskHelper.props" Pack="True" PackagePath="build" />
   </ItemGroup>
   

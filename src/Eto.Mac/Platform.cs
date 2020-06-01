@@ -211,6 +211,8 @@ namespace Eto.Mac
 			p.Add<ProgressBar.IHandler>(() => new ProgressBarHandler());
 			p.Add<RadioButton.IHandler>(() => new RadioButtonHandler());
 			p.Add<Scrollable.IHandler>(() => new ScrollableHandler());
+			p.Add<HorizontalScrollbar.IHandler>(() => new HorizontalScrollbarHandler());
+			p.Add<VerticalScrollbar.IHandler>(() => new VerticalScrollbarHandler());
 			p.Add<SearchBox.IHandler>(() => new SearchBoxHandler());
 			p.Add<Slider.IHandler>(() => new SliderHandler());
 			p.Add<Spinner.IHandler>(() => new SpinnerHandler());

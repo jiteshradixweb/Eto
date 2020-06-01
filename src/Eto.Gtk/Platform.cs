@@ -170,6 +170,7 @@ namespace Eto.GtkSharp
 			p.Add<Stepper.IHandler>(() => new ThemedStepperHandler());
 			p.Add<TextStepper.IHandler>(() => new TextStepperHandler());
 			p.Add<VerticalScrollbar.IHandler>(() => new VerticalScrollbarHandler());
+			p.Add<HorizontalScrollbar.IHandler>(() => new HorizontalScrollbarHandler());
 			p.Add<ButtonSegmentedItem.IHandler>(() => new ThemedButtonSegmentedItemHandler());
 			p.Add<MenuSegmentedItem.IHandler>(() => new ThemedMenuSegmentedItemHandler());
 			p.Add<SegmentedButton.IHandler>(() => new ThemedSegmentedButtonHandler());
