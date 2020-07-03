@@ -435,7 +435,7 @@ namespace Eto.Wpf.Forms
 					HandleEvent(Eto.Forms.Control.MouseEnterEvent);
 					ContainerControl.MouseLeave += (sender, e) =>
 					{
-						if (isMouseOver != Control.IsMouseOver)
+						if (Control != null && isMouseOver != Control.IsMouseOver)
 						{
 							var args = e.ToEto(Control);
 							Callback.OnMouseLeave(Widget, args);
