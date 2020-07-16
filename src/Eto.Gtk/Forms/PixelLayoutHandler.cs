@@ -17,12 +17,12 @@ namespace Eto.GtkSharp.Forms
 #if GTK3
 		class EtoVBox : Gtk.VBox
 		{
-			//protected override void OnAdjustSizeRequest(Gtk.Orientation orientation, out int minimum_size, out int natural_size)
-			//{
-			//	base.OnAdjustSizeRequest(orientation, out minimum_size, out natural_size);
-			//	// Gtk.Fixed only uses minimum size, not natural size. ugh.
-			//	minimum_size = natural_size;
-			//}
+			protected override void OnAdjustSizeRequest(Gtk.Orientation orientation, out int minimum_size, out int natural_size)
+			{
+				base.OnAdjustSizeRequest(orientation, out minimum_size, out natural_size);
+				// Gtk.Fixed only uses minimum size, not natural size. ugh.
+				minimum_size = natural_size;
+			}
 		}
 #endif
 
@@ -35,7 +35,7 @@ namespace Eto.GtkSharp.Forms
 			if (widget.Parent != null)
 				((Gtk.Container)widget.Parent).Remove(widget);
 			widget.ShowAll();
-			//widget = new EtoVBox { Child = widget, Expand = true };
+			widget = new EtoVBox { Child = widget };
 #else
 			var widget = ctl.ContainerControl;
 			if (widget.Parent != null)
@@ -52,7 +52,7 @@ namespace Eto.GtkSharp.Forms
 			if (ctl.CurrentLocation.X != x || ctl.CurrentLocation.Y != y)
 			{
 #if GTK3
-				var widget = ctl.ContainerControl;
+				var widget = ctl.ContainerControl.Parent;
 #else
 				var widget = ctl.ContainerControl;
 #endif
@@ -65,7 +65,7 @@ namespace Eto.GtkSharp.Forms
 		public void Remove(Control child)
 		{
 #if GTK3
-			Control.Remove(child.GetContainerWidget());
+			Control.Remove(child.GetContainerWidget().Parent);
 #else
 			Control.Remove(child.GetContainerWidget());
 #endif

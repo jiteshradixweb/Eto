@@ -13,7 +13,7 @@ namespace Eto.Wpf.Forms.Controls
 			Control = new EtoBorder
 			{
 				Handler = this,
-				Focusable = true,
+				Focusable = false,
 				Background = swm.Brushes.Transparent // to get mouse events
 			};
 		}

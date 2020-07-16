@@ -393,6 +393,7 @@ namespace Eto.Mac.Forms.Controls
 		{
 			base.OnLoad(e);
 			SetAttributes(true);
+			naturalSizeInfinity = null;
 		}
 
 		public override void AttachEvent(string id)
