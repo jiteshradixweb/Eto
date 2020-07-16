@@ -375,9 +375,9 @@ namespace Eto.Wpf.Forms
 			get { return Control.IsKeyboardFocusWithin; }
 		}
 
-		public bool Visible
+		public virtual bool Visible
 		{
-			get { return ContainerControl.Visibility != sw.Visibility.Collapsed; }
+			get { return ContainerControl.Visibility == sw.Visibility.Visible; }
 			set
 			{
 				ContainerControl.Visibility = (value) ? sw.Visibility.Visible : sw.Visibility.Collapsed;
@@ -514,6 +514,7 @@ namespace Eto.Wpf.Forms
 					break;
 				case Eto.Forms.Control.DragEnterEvent:
 					Control.DragEnter += Control_DragEnter;
+					HandleEvent(Eto.Forms.Control.DragOverEvent);
 					break;
 				case Eto.Forms.Control.DragLeaveEvent:
 					Control.DragLeave += Control_DragLeave;
@@ -624,17 +625,22 @@ namespace Eto.Wpf.Forms
 			if (e.Data.GetDataPresent(WpfFrameworkElement.CustomCursor_DataKey))
 				e.Data.SetDataEx(WpfFrameworkElement.CustomCursor_DataKey, false);
 			IsDragEntered = false;
+			if (dragEnterEffects != null)
+				args.Effects = dragEnterEffects.Value;
 			Callback.OnDragLeave(Widget, args);
 			Callback.OnDragDrop(Widget, args);
 			e.Effects = args.Effects.ToWpf();
 			e.Handled = true;
 		}
 
+		DragEffects? dragEnterEffects;
+
 		protected virtual void HandleDragEnter(sw.DragEventArgs e, DragEventArgs args)
 		{
 			var lastCursor = MouseHandler.s_CursorSetCount;
 			Callback.OnDragEnter(Widget, args);
 			e.Effects = args.Effects.ToWpf();
+			dragEnterEffects = args.Effects;
 			e.Handled = true;
 
 			if (lastCursor != MouseHandler.s_CursorSetCount)
@@ -645,6 +651,7 @@ namespace Eto.Wpf.Forms
 		{
 			if (e.Data.GetDataPresent(WpfFrameworkElement.CustomCursor_DataKey))
 				e.Data.SetDataEx(WpfFrameworkElement.CustomCursor_DataKey, false);
+			dragEnterEffects = null;
 			Callback.OnDragLeave(Widget, args);
 			if (sw.DropTargetHelper.IsSupported(e.Data))
 			{
@@ -656,6 +663,8 @@ namespace Eto.Wpf.Forms
 		protected virtual void HandleDragOver(sw.DragEventArgs e, DragEventArgs args)
 		{
 			var lastCursor = MouseHandler.s_CursorSetCount;
+			if (dragEnterEffects != null)
+				args.Effects = dragEnterEffects.Value;
 			Callback.OnDragOver(Widget, args);
 			e.Effects = args.Effects.ToWpf();
 
