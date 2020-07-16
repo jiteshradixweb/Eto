@@ -6,7 +6,7 @@ namespace Eto.GtkSharp.Forms.Controls
 {
 	public class ButtonHandler : ButtonHandler<Gtk.Button, Button, Button.ICallback>
 	{
-		public static int MinimumWidth = 80;
+		public static int MinimumWidth = 0;
 
 		public class EtoButton : Gtk.Button
 		{
