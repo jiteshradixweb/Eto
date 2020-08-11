@@ -21,7 +21,7 @@ namespace Eto.GtkSharp.Forms
 			{
 				base.OnAdjustSizeRequest(orientation, out minimum_size, out natural_size);
 				// Gtk.Fixed only uses minimum size, not natural size. ugh.
-				minimum_size = Math.Min(minimum_size, natural_size);
+				minimum_size = natural_size;
 			}
 		}
 #endif
