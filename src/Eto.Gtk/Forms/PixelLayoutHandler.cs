@@ -34,8 +34,8 @@ namespace Eto.GtkSharp.Forms
 			var widget = ctl.ContainerControl;
 			if (widget.Parent != null)
 				((Gtk.Container)widget.Parent).Remove(widget);
-			widget.ShowAll();
 			widget = new EtoVBox { Child = widget };
+			widget.ShowAll();
 #else
 			var widget = ctl.ContainerControl;
 			if (widget.Parent != null)
