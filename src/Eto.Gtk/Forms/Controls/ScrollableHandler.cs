@@ -50,9 +50,15 @@ namespace Eto.GtkSharp.Forms.Controls
 				// the natural size of the scrolled window should be the size of the child viewport
 				if (Child != null)
 				{
+					var isPixelLayout = (((((Child as Gtk.Viewport).Child as Gtk.VBox).Children[0] as Gtk.HBox).Children[0] as Gtk.Alignment).Children[0] is Gtk.Fixed);
+
 					Child.GetPreferredSize(out var ms, out var ns);
 					var child_size = orientation == Gtk.Orientation.Horizontal ? ns.Width : ns.Height;
-					natural_size = Math.Max(natural_size, child_size + GetBorderSize());
+					//Hack: when content is PixelLayout, ScrollWindow size sets same as Pixellayout size and Hence scroll bar is not visible.
+					if (!isPixelLayout)
+					{
+						natural_size = Math.Max(natural_size, child_size + GetBorderSize());
+					}
 				}
 			}
 #endif
@@ -89,7 +95,7 @@ namespace Eto.GtkSharp.Forms.Controls
 			vp = new Gtk.Viewport
 			{
 				ShadowType = Gtk.ShadowType.None,
-				Child = vbox
+				Child = vbox,
 			};
 
 			Control.Add(vp);
