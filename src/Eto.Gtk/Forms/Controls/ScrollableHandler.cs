@@ -95,7 +95,7 @@ namespace Eto.GtkSharp.Forms.Controls
 			vp = new Gtk.Viewport
 			{
 				ShadowType = Gtk.ShadowType.None,
-				Child = vbox
+				Child = vbox,
 			};
 
 			Control.Add(vp);
