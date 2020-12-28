@@ -50,8 +50,8 @@ namespace Eto.Mac.Forms
 
 		protected override NSWindow CreateControl()
 		{
-			return new EtoWindow(new CGRect(0, 0, 200, 200), 
-				NSWindowStyle.Resizable | NSWindowStyle.Closable | NSWindowStyle.Miniaturizable | NSWindowStyle.Titled, 
+			return new EtoWindow(new CGRect(0, 0, 200, 200),
+				NSWindowStyle.Resizable | NSWindowStyle.Closable | NSWindowStyle.Miniaturizable | NSWindowStyle.Titled,
 				NSBackingStore.Buffered, false);
 		}
 	}
@@ -103,7 +103,7 @@ namespace Eto.Mac.Forms
 			{
 				Control.OrderFront(ApplicationHandler.Instance.AppDelegate);
 			}
-			
+
 			// setting the owner shows the window, so we have to do this here.
 			EnsureOwner();
 
@@ -111,6 +111,11 @@ namespace Eto.Mac.Forms
 			{
 				FireOnShown();
 			}
+		}
+
+		public void ShowModal(Form form)
+		{
+			//TODO:
 		}
 
 		public override bool Visible

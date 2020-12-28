@@ -49,7 +49,7 @@ namespace Eto.WinForms.Forms
 				get
 				{
 					var createParams = base.CreateParams;
-                    
+
 					if (hideFromAltTab)
 						createParams.ExStyle |= (int)Win32.WS_EX.TOOLWINDOW;
 					if (!ShouldAllowFocus)
@@ -131,6 +131,11 @@ namespace Eto.WinForms.Forms
 		public void Show()
 		{
 			Control.Show();
+		}
+
+		public void ShowModal(Form form)
+		{
+			Control.ShowDialog();
 		}
 
 		public override bool ShowInTaskbar

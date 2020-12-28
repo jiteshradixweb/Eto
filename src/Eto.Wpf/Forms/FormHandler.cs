@@ -54,6 +54,16 @@ namespace Eto.Wpf.Forms
 			WpfFrameworkElementHelper.ShouldCaptureMouse = false;
 		}
 
+		public void ShowModal(Form form)
+		{
+			if (LocationSet)
+			{
+				Control.WindowStartupLocation = sw.WindowStartupLocation.Manual;
+			}
+			Control.ShowDialog();
+			WpfFrameworkElementHelper.ShouldCaptureMouse = false;
+		}
+
 		public bool ShowActivated
 		{
 			get { return Control.ShowActivated; }

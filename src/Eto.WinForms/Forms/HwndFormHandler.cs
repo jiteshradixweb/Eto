@@ -65,6 +65,11 @@ namespace Eto.WinForms.Forms
 			throw new NotImplementedException();
 		}
 
+		public void ShowModal(Form form)
+		{
+			throw new NotImplementedException();
+		}
+
 		public override IntPtr NativeHandle => Control;
 
 		public Eto.Forms.ToolBar ToolBar

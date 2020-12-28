@@ -25,5 +25,10 @@ namespace Eto.Wpf.Forms
 		{
 			throw new NotImplementedException();
 		}
+
+		public void ShowModal(Form form)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

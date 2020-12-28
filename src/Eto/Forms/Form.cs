@@ -100,6 +100,24 @@ namespace Eto.Forms
 		}
 
 		/// <summary>
+		///  Shows the form modally
+		/// </summary>
+		public void ShowModal(Form form)
+		{
+			var loaded = Loaded;
+			if (!loaded)
+			{
+				OnPreLoad(EventArgs.Empty);
+				OnLoad(EventArgs.Empty);
+				OnLoadComplete(EventArgs.Empty);
+
+				Application.Instance.AddWindow(this);
+			}
+
+			Handler.ShowModal(form);
+		}
+
+		/// <summary>
 		/// Interface handler for the <see cref="Form"/> control
 		/// </summary>
 		public new interface IHandler : Window.IHandler
@@ -108,6 +126,11 @@ namespace Eto.Forms
 			/// Show the form
 			/// </summary>
 			void Show();
+
+			/// <summary>
+			/// Shows the form modally, blocking the current thread until it is closed.
+			/// </summary>
+			void ShowModal(Form form);
 
 			/// <summary>
 			/// Gets or sets a value indicating that the form should be activated when initially shown.

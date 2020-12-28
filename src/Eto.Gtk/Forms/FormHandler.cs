@@ -52,7 +52,12 @@ namespace Eto.GtkSharp.Forms
 				Control.AcceptFocus = CanFocus; // in case user changes it right after this call, but should be true
 			}
 		}
-		#endif
+
+		public void ShowModal(Form form)
+		{
+			//TODO:
+		}
+#endif
 
 		static object ShowActivated_Key = new object();
 
