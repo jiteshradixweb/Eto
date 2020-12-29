@@ -113,9 +113,22 @@ namespace Eto.Mac.Forms
 			}
 		}
 
+		ModalEventArgs session;
 		public void ShowModal(Form form)
 		{
-			//TODO:
+			EnsureOwner();
+			Application.Instance.AsyncInvoke(FireOnShown); // fire after dialog is shown
+
+			Widget.Closed += HandleClosed;
+			Control.MakeKeyWindow();
+			MacModal.Run(Widget, Control, out session);
+		}
+
+		void HandleClosed(object sender, EventArgs e)
+		{
+			if (session != null)
+				session.Stop();
+			Widget.Closed -= HandleClosed;
 		}
 
 		public override bool Visible
