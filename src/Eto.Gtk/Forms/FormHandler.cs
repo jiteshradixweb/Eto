@@ -55,7 +55,11 @@ namespace Eto.GtkSharp.Forms
 
 		public void ShowModal(Form form)
 		{
-			//TODO:
+			Control.Modal = true;
+			Control.TransientFor = form.ToGtk();
+			Control.Child.ShowAll();
+			Control.Show();
+			//TODO: Need to check why execution not blocks here.
 		}
 #endif
 
