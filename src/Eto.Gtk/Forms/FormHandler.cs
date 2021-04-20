@@ -59,6 +59,7 @@ namespace Eto.GtkSharp.Forms
 			Control.TransientFor = form.ToGtk();
 			Control.Child.ShowAll();
 			Control.Show();
+			//Control.Window.FreezeUpdates();			
 			//TODO: Need to check why execution not blocks here.
 		}
 #endif

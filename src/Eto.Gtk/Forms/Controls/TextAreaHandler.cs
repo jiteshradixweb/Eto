@@ -15,7 +15,8 @@ namespace Eto.GtkSharp.Forms.Controls
 		where TCallback: TextArea.ICallback
 	{
 		int suppressSelectionAndTextChanged;
-		readonly Gtk.ScrolledWindow scroll;
+		//readonly Gtk.ScrolledWindow scroll;
+		readonly GtkShrinkableVBox scroll;
 		Gtk.TextTag tag;
 
 		public override Gtk.Widget ContainerControl
@@ -27,8 +28,11 @@ namespace Eto.GtkSharp.Forms.Controls
 
 		public TextAreaHandler()
 		{
-			scroll = new Gtk.ScrolledWindow();
-			scroll.ShadowType = Gtk.ShadowType.In;
+			//scroll = new Gtk.ScrolledWindow();
+			//scroll.ShadowType = Gtk.ShadowType.In;
+			scroll = new GtkShrinkableVBox();
+			scroll.Resizable = true;
+			scroll.SetBackground(Colors.Brown);
 			Control = new TControl();
 			scroll.Add(Control);
 			Wrap = true;
